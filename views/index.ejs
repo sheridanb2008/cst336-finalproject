@@ -1,0 +1,83 @@
+<% include partials/header.ejs %>
+
+      <main>
+         <div id="pageTitle">Advanced Aviation Trader</div>
+         <div id="pageText">
+            <p id="indexText">We believe that whether you are buying your first plane,<br>
+                              or trying to sell the one you currently own, the experience<br>
+                              should be one that is fun, easy, and affordable.</p>
+         </div>
+
+         <div class="search">
+               <form action="/search">
+                  <input type="text" size="15" placeholder="What airplane will you be flying tomorrow?" name="keyword"/><br>
+                  <button class="btn btn-primary" id="searchBtn">Search</button>
+               </form>
+         </div>
+
+         <div id="backPic">
+            <img id="backgroundPic" src="img/index_background.png" alt="background_image">
+
+            <div id="quoteBlock">
+                  <div class="container">
+                     <div class="row">
+                     <div class="col">
+                        <p>"The website makes buying a plane haggle-free, with prices below market value, so customers can rest easy knowing they aren't getting ripped off."</p>
+                     </div>
+                     <div class="w-100"></div>
+                     <div class="col">Column</div>
+                     <div class="col">Column</div>
+                     <div class="col">Column</div>
+                     <div class="col">Column</div>
+                     <div class="col">Column</div>
+                     </div>
+                  </div>
+            </div>
+
+            <div id="optionBlock">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-sm">
+
+                        <div class="optionContainer">
+                           <div id="optionPic">
+                              <img src="img/focus_1.png" alt="plane">
+                           </div>
+                           <div>
+                              <p id="optionTitle">High Quality Planes</p>
+                              <p id="optionText">Multiple inspections. Free history report. Complimentary limited warranty for peace of mind.</p>
+                           </div>
+                        </div>
+                        
+                     </div>
+
+                    <div class="col-sm">
+                        <div class="optionContainer">
+                           <div id="optionPic">
+                              <img src="img/focus_2.png" alt="plane">
+                           </div>
+                           <div>
+                           <p id="optionTitle">Easy Online Financing</p>
+                           <p id="optionText">Apply online in minutes. Our 10+ financing partners will compete to get you a highly competitive rate.</p>
+                        </div>
+                        </div>
+                     </div>
+
+
+
+                    <div class="col-sm">
+                        <div class="optionContainer">
+                           <div id="optionPic">
+                              <img src="img/focus_3.png" alt="plane">
+                           </div>
+                           <div>
+                           <p id="optionTitle">Delivered Right to You</p>
+                           <p id="optionText">Have your airplane delivered to any of your local airports. A better option? Have it delivered to your own personal hanger.</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+            </div>
+
+<% include partials/footer.ejs %>
