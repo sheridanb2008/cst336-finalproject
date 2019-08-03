@@ -1,0 +1,137 @@
+<% include partials/header.ejs %>
+
+      <main>
+         <div id="header"></div>
+            <div id="planeDataBlock">
+               <h3>Title placeholder</h3>
+               <form>
+                  <div class="containerPlaneData"> 
+                     <div class="row">
+                        <!-- General Information data for the plane-->
+                        <div class="col-sm-4" id="dataLabel">Year</div>
+                        <div class="col-sm-8">
+                           <input type="text" id="dataEntryFieldSmall" size="15" placeholder="YYYY" name="year"/>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-sm-4" id="dataLabel">Manufacturer</div>
+                        <div class="col-sm-8">
+                           <input type="text" id="dataEntryField" size="15" placeholder="" name="manufacturer"/>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-sm-4" id="dataLabel">Model</div>
+                        <div class="col-sm-8">
+                           <input type="text" id="dataEntryField" size="15" placeholder="" name="model"/>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-sm-4" id="dataLabel">Condition</div>
+                        <div class="col-sm-8">
+                           <input type="text" id="dataEntryField" size="15" placeholder="" name="condition"/>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-sm-4" id="dataLabel">Serial Number</div>
+                        <div class="col-sm-8">
+                           <input type="text" id="dataEntryField" size="15" placeholder="" name="serialNumber"/>
+                        </div>
+                        <!-- Airframe data for the plane-->
+                        <div class="w-100"></div>
+                        <div class="col">Airframe</div>
+                        <div class="w-100"></div>
+                        <div class="col-sm-4" id="dataLabel">Total Time</div>
+                         <div class="col-sm-8">
+                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="totalTime"/>
+                         </div>
+                         <div class="w-100"></div>
+                         <div class="col-sm-4" id="dataLabel">Total Landings</div>
+                         <div class="col-sm-8">
+                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="totalLandings"/>
+                         </div>
+                         <!-- Engine data for the plane-->
+                         <div class="w-100"></div>
+                         <div class="col">Engines</div>
+                         <div class="w-100"></div>
+                         <div class="col-sm-4" id="dataLabel">Type</div>
+                         <div class="col-sm-8">
+                           <input type="text" id="dataEntryField" size="5" placeholder="" name="engineType"/>
+                         </div>
+                         <div class="w-100"></div>
+                         <div class="col-sm-4" id="dataLabel">Hours</div>
+                         <div class="col-sm-8">
+                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="engineHours"/>
+                         </div>
+                         <div class="w-100"></div>
+                         <div class="col-sm-4" id="dataLabel">Cycles</div>
+                         <div class="col-sm-8">
+                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="engineCycles"/>
+                         </div>
+                         <!-- Avionics data for the plane-->
+                         <div class="w-100"></div>
+                         <div class="col">Avionics</div>
+                         <div class="w-100"></div>
+                         <div class="col-sm-4" id="dataLabel">ADS-B Equipped</div>
+                         <div class="col-sm-8">
+                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="yes/no" name="engineType"/>
+                         </div>
+
+                         <div class="w-100"></div>
+                         <div class="col-sm-4" id="dataLabel">Avionics/Radios</div>
+                         <div class="col-sm-8">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="avionics"></textarea>
+                         </div>
+                         <!-- Exterior data for the plane-->
+                         <div class="w-100"></div>
+                         <div class="col">Exterior</div>
+                         <div class="w-100"></div>
+                         <div class="col-sm-4" id="dataLabel">Color scheme</div>
+                         <div class="col-sm-8">
+                           <input type="text" id="dataEntryField" size="5" placeholder="" name="colorScheme"/>
+                         </div>
+                         <!-- Interior data for the plane-->
+                         <div class="w-100"></div>
+                         <div class="col">Interior</div>
+                         <div class="w-100"></div>
+                         <div class="col-sm-4" id="dataLabel">Number of seats</div>
+                         <div class="col-sm-8">
+                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="colorScheme"/>
+                         </div>
+                         <div class="w-100"></div>
+                         <div class="col-sm-4" id="dataLabel">Galley</div>
+                         <div class="col-sm-8">
+                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="yes/no" name="galley"/>
+                         </div>
+                         <div class="w-100"></div>
+                         <div class="col-sm-4" id="dataLabel">Galley configuration</div>
+                         <div class="col-sm-8">
+                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="galleyConfig"/>
+                         </div>
+                         <div class="w-100"></div>
+                         <div class="col-sm-4" id="dataLabel">Lavatory</div>
+                         <div class="col-sm-8">
+                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="yes/no" name="lavatory"/>
+                         </div>
+                         <div class="w-100"></div>
+                         <div class="col-sm-4" id="dataLabel">Lavatory configuration</div>
+                         <div class="col-sm-8">
+                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="lavatoryConfig"/>
+                         </div>
+                         <div class="w-100"></div>
+                         <div class="col-sm-4" id="dataLabel">Interior</div>
+                         <div class="col-sm-8">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="interior"></textarea>
+                         </div>
+                        <!-- Inspection data for the plane-->
+                        <div class="w-100"></div>
+                         <div class="col">Inspection</div>
+                        <div class="w-100"></div>
+                        <div class="col-sm-4" id="dataLabel">Status</div>
+                        <div class="col-sm-8">
+                          <input type="text" id="dataEntryField" size="5" placeholder="" name="inspection"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+            
+         <div>
+
+<% include partials/footer.ejs %>
