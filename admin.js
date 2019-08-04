@@ -71,11 +71,11 @@ userLogin : function(req, res, adminLogin) {
     var sqlParams;
     //We login with username for admin, email for regular users
     if(adminLogin) {
-      sql = "SELECT id,email,passwordHash,adminUser from users where username=?";
+      sql = "SELECT id,firstName,lastName,email,passwordHash,adminUser from users where username=?";
       sqlParams = [req.body.username]
     }
     else {
-      sql = "SELECT id,email,passwordHash,adminUser from users where email=?";
+      sql = "SELECT id,firstName,lastName,email,passwordHash,adminUser from users where email=?";
       sqlParams = [req.body.email]
     }    
     conn.connect(function(err) {     
@@ -95,12 +95,20 @@ userLogin : function(req, res, adminLogin) {
               if(adminLogin) {
                 if(results[0].adminUser==1) {
                   req.session.isAdmin = true;
+                  req.session.firstName = results[0].firstName;
+                  req.session.lastName = results[0].lastName;
+                  req.session.email = results[0].email;
                   resolve(true);
+                  return;
                 }
                 else {
                   resolve(false);
+                  return;
                 }
               }
+              req.session.firstName = results[0].firstName;
+              req.session.lastName = results[0].lastName;
+              req.session.email = results[0].email;
               resolve(true);
             }
             else {
@@ -111,7 +119,60 @@ userLogin : function(req, res, adminLogin) {
     });
     
   });
-}
+},
+userAlreadyExists: function(email) {
+  return new Promise( function(resolve,reject) {
+    var conn = tools.createConnection();
+    sql = "SELECT id from users where email=?";
+    sqlParams = [email];
+    conn.connect(function(err) {     
+      if(err) 
+        throw(err);
+      conn.query(sql,sqlParams,function(err,results) {
+        if(err)
+          console.log(err);
+        if(results && results.length<1) {
+          resolve(false);
+          return;
+        }
+        else {
+          resolve(true);
+        }
+      });//query
+    });//connect
+    
+  });//Promise
+},
 
+createUser: function(firstName,lastName,email,password,agreeSpam) {
+  return new Promise( function(resolve,reject) {
+    var conn = tools.createConnection();
+
+    sql = "INSERT INTO `users` (`firstName`, `lastName`, `agreeSpam`, `username`, `email`, `passwordHash`,`adminUser`) VALUES" + 
+          "(?,?,?,'',?,?,0)";
+    //Hash the password
+    var passwordHash = bcrypt.hashSync(password,10);
+    if(!agreeSpam) 
+      agreeSpam = 0;
+
+    sqlParams = [firstName,lastName,agreeSpam,email,passwordHash];
+    conn.connect(function(err) {     
+      if(err) 
+        throw(err);
+      conn.query(sql,sqlParams,function(err,results) {
+        if(err)
+          console.log(err);
+        if(results && results.length<1) {
+          resolve(false);
+          return;
+        }
+        else {
+          resolve(true);
+        }
+      });//query
+    });//connect
+    
+  });//Promise
+}
 
 }

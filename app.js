@@ -37,7 +37,7 @@ app.get("/adminLogin", function(req, res) {
 })
 
 app.get("/signUp", function(req, res) {
-   res.render("signUp.ejs");
+   res.render("signUp.ejs",{"loginError":""});
 })
 
 app.get("/dataEntry", function(req, res) {
@@ -102,8 +102,29 @@ app.post("/userAuthenticate", async function(req,res) {
     res.render("index.ejs"); 
   }
   else {
-      res.render("login.ejs", {"loginError":"Invalid password, "});
+      res.render("login.ejs", {"loginError":"Invalid password or user id."});
     }
+});
+
+app.post("/createUser", async function(req,res) {
+  var userExists = await admin.userAlreadyExists(req.body.email);
+  if(userExists) {
+    res.render("signUp.ejs", {"loginError":"A user with this email address already exists"});
+    return;
+  }
+  else{
+    var userCreated = await admin.createUser(req.body.firstName,
+            req.body.lastName,
+            req.body.email,
+            req.body.password,
+            req.body.agreeSpam);
+    if(userCreated) {
+      res.render("login.ejs", {"loginError":"User account created successfully. You can now login."});
+    }
+    else {
+      res.render("signUp.ejs", {"loginError":"Unknown error creating user."});
+    }
+  }
 });
 
 app.post("/adminAuthenticate", async function(req,res) {

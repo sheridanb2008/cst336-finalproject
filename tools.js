@@ -6,17 +6,12 @@ module.exports = {
  createConnection: function() {
 
     var conn = mysql.createConnection({
-        host:"localhost", 
-        user: "root", 
-        password:"finalExam1", 
+        host:"cst336.ddns.net", 
+        user: "cst2", 
+        password:"3UaIr2cyEPJD81u", 
         database: "team_final"});
     
     return conn;
-},
-  setSession: function(req, res) {
-    //if(!req.session.user) {
-    //  req.session.user = {}
-    //}
 }
   
   
