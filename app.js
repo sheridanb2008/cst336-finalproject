@@ -6,6 +6,8 @@ app.use(express.static("public"));
 
 const request = require("request");
 const mysql   = require("mysql");
+const admin = require("./admin.js");
+const tools = require("./tools.js")
 
 // routes =========================
 
@@ -33,6 +35,11 @@ app.get("/signUp", function(req, res) {
 app.get("/dataEntry", function(req, res) {
    res.render("dataEntry.ejs");
 })
+
+app.use(express.urlencoded());
+app.post("/addAircraft", function(req, res) {
+  admin.addAircraft(req,res);
+});
 
 // server listening
 app.listen("8081", "0.0.0.0", function(){
