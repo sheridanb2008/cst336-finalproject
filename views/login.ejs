@@ -5,12 +5,12 @@
             <div id="createAccountBlock">
             <div id="createAccountContainer">
                <h3 id="createAccountTitle">Welcome back</h3>
-               <form>
+               <form action="/userAuthenticate" method="POST">
                   <div class="form-group">
                      <label id="formLabel" for="formGroupInput">E-mail address</label>
-                     <input type="text" class="form-control" id="formGroupInput" placeholder="example@example.com">
+                     <input type="text" name="email" class="form-control" id="formGroupInput" placeholder="example@example.com">
                      <label id="formLabel" for="formGroupInput">Password</label>
-                     <input type="password" class="form-control" id="formGroupInput" placeholder="Password (min of 8 characters)">
+                     <input type="password" name="password" class="form-control" id="formGroupInput" placeholder="Password (min of 8 characters)">
                      <a href="" id="lginText">Forgot Password?</a><br>
                      <button type="submit" class="btn btn-primary" id="account-btn">LOG IN</button>
                      <br><br>

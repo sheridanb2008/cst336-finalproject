@@ -12,7 +12,12 @@ module.exports = {
         database: "team_final"});
     
     return conn;
-} 
+},
+  setSession: function(req, res) {
+    //if(!req.session.user) {
+    //  req.session.user = {}
+    //}
+}
   
   
 }

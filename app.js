@@ -41,12 +41,18 @@ app.get("/signUp", function(req, res) {
 })
 
 app.get("/dataEntry", function(req, res) {
+  if(req.session.authenticated && req.session.isAdmin) {
    res.render("dataEntry.ejs");
+  }
+  else {
+    res.render("adminLogin.ejs", {"loginError":"Sign in as an administrator."});
+  }
 })
 
 
 app.post("/api/addAircraft", function(req, res) {
   if(req.session.authenticated) {
+    console.log("isAdmin: " + req.session.isAdmin);
     admin.addAircraft(req,res);
   }
   else {
@@ -83,10 +89,24 @@ app.get("/adminLoginAction", function(req, res) {
   res.render("adminLogin.ejs", {"loginError":""});
 });
 
+app.post("/userAuthenticate", async function(req,res) {
+  var loginSuccessful = await admin.userLogin(req,res,false); 
+  if(loginSuccessful) {      
+    req.session.authenticated = true;
+    console.log("User authenticated.");
+    //todo: This is a placeholder for the main logged in user page
+    res.render("index.ejs"); 
+  }
+  else {
+    //todo: add error text
+      res.render("login.ejs"); 
+    }
+});
+
 app.post("/adminAuthenticate", async function(req,res) {
-    var loginSuccessful = await admin.adminLogin(req,res);  
+    var loginSuccessful = await admin.userLogin(req,res,true);  
   
-    if(loginSuccessful) {
+    if(loginSuccessful) {      
       req.session.authenticated = true;
       var sql;
       var sqlParams;

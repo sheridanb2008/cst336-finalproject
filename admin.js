@@ -61,25 +61,51 @@ module.exports = {
    // push them to the db
  },
   
-adminLogin : function(req) {
+userLogin : function(req, res, adminLogin) {
   return new Promise( function(resolve,reject) {
-    //Query if the username/password match    
+    //Query if the username/password match  
+    req.session.isAdmin = false;
+    
     var conn = tools.createConnection();
-    var sql = "SELECT id,email,passwordHash from administrators where username=?";
-    var sqlParams = [req.body.username]
+    var sql;
+    var sqlParams;
+    //We login with username for admin, email for regular users
+    if(adminLogin) {
+      sql = "SELECT id,email,passwordHash,adminUser from users where username=?";
+      sqlParams = [req.body.username]
+    }
+    else {
+      sql = "SELECT id,email,passwordHash,adminUser from users where email=?";
+      sqlParams = [req.body.email]
+    }    
     conn.connect(function(err) {     
         if(err) 
           throw(err);
-     
         conn.query(sql,sqlParams,function(err,results) {
-          if(results.length<1) {
+          if(err)
+            console.log(err);
+          if(!results || results.length<1) {
             resolve(false);
             return;
           }
           if(err)
             console.log(err);
           bcrypt.compare(req.body.password, results[0].passwordHash, function(err, res) {
-            resolve(res);
+            if(res) {   
+              if(adminLogin) {
+                if(results[0].adminUser==1) {
+                  req.session.isAdmin = true;
+                  resolve(true);
+                }
+                else {
+                  resolve(false);
+                }
+              }
+              resolve(true);
+            }
+            else {
+              resolve(false);
+            }
           });
         });
     });
