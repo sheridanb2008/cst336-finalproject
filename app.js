@@ -36,6 +36,10 @@ app.get("/adminLogin", function(req, res) {
    res.render("adminLogin.ejs");
 })
 
+app.get("/adminMain", function(req, res) {
+  res.render("adminMain.ejs");
+})
+
 app.get("/signUp", function(req, res) {
    res.render("signUp.ejs",{"loginError":""});
 })
@@ -150,7 +154,7 @@ app.post("/adminAuthenticate", async function(req,res) {
     }
   else {
     //todo: render failed login
-    res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again."});
+    res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Please try again."});
   }
   
 });

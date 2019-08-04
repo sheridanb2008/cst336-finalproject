@@ -47,6 +47,7 @@ h4 {
 }
 
 .btn-outline-primary {
+   font-family: 'Barlow Condensed', sans-serif;
    margin-top: 18px;
    margin-right: 6px;
    color: #00306D;
@@ -57,10 +58,12 @@ h4 {
 .btn-outline-primary:hover {
    color: #fff;
    background-color: #475DA1;
-   border-color: #475DA1
+   border-color: #475DA1;
+   border-color: #fff;
 }
 
 .btn-primary {
+   font-family: 'Barlow Condensed', sans-serif;
    margin-top: 18px;
    margin-right: 5px;
    background-color: #00306D;
@@ -70,6 +73,7 @@ h4 {
 
 .btn-primary:hover {
    background-color: #475DA1;
+   border-color: #475DA1;
 }
 
 #searchBtn {
@@ -413,5 +417,7 @@ input {
 }
 
 #loginErrorText {
-  color: red;
+   font-family: 'Barlow', sans-serif;
+   color: red;
+   width: 336px;
 }
