@@ -37,8 +37,27 @@ app.get("/dataEntry", function(req, res) {
 })
 
 app.use(express.urlencoded());
-app.post("/addAircraft", function(req, res) {
+app.post("/api/addAircraft", function(req, res) {
   admin.addAircraft(req,res);
+});
+
+app.get("/adminList", function(req, res) {
+   var sql;
+    var sqlParams;
+    var conn = tools.createConnection();
+    sql = "SELECT * from aircraft";
+    conn.connect(function(err) {
+        if(err) throw(err);
+            conn.query(sql,function(err,results,fields) {
+                if(err) throw(err);
+                var columns = [];
+                fields.forEach(function(field) {
+                  columns.push(field.name);
+                })
+                res.render("adminList", {"rows":results,"columns":columns});
+              
+        });
+    });
 });
 
 // server listening

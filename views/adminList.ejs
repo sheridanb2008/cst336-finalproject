@@ -1,0 +1,28 @@
+<% include partials/header.ejs %>
+
+<p>
+  Aircraft in Inventory
+</p>
+
+<br><br><br><br><br>
+
+
+<table border="1" padding="2px">
+  <tr>
+    <% columns.forEach(function(key) { %>
+      <th>  <%= key %> </th>
+    <% }) %>  
+  </tr>
+  
+  <% rows.forEach(function(row) { %>
+      <tr>  
+        <% columns.forEach(function(key) { %>
+          <td>  <%= row[key] %> </td>
+        <% }) %>
+      </tr>
+    <% }) %>
+  
+</table>
+
+
+<% include partials/footer.ejs %>
