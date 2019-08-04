@@ -185,6 +185,21 @@ input {
    text-align: center;
    color: #1F2A3C;
    background: linear-gradient(100deg, #eaeeff 60%, #ffffff 60%);
+   display: flex;
+}
+
+#createAdminAccountBlock {
+   margin-top: 60px;
+   height: 725px;
+   background-color: #fff;
+   padding-top: 150px;
+   padding-left: 100px;
+   padding-right: 100px;
+   margin-top:0px;
+   text-align: center;
+   color: #1F2A3C;
+   background: linear-gradient(100deg, #eaeeff 60%, #ffffff 60%);
+   display: flex;
 }
 
 #optionTitle {
@@ -327,6 +342,7 @@ input {
    background-color: #fff;
    padding-left: 40px;
    width: 416px;
+   height: 385px;
 }
 
 #createAccountTitle {
@@ -372,4 +388,9 @@ input {
 .footerTitleSubText {
    font-family: 'Barlow', sans-serif;
    font-size: 14px;
+}
+
+#loginPhoto {
+   padding-left: 50px;
+   padding-top: 25px;
 }
