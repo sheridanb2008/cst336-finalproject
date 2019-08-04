@@ -1,9 +1,12 @@
 const request = require('request');
 const mysql = require('mysql');
+const bcrypt = require('bcrypt')
 const tools = require("./tools.js")
+const session = require('express-session')
 
 module.exports = {
   
+  //TODO: validate the admin session
  addAircraft: function(req, res) {
    //Get the parameters from the request
    var year = req.body.year;
@@ -43,7 +46,6 @@ module.exports = {
        "adsbEquipped,avionics,colorScheme,galley,galleyConfig,lavatory,lavatoryConfig,inspection,numberSeats,interior) " +
        "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
    var conn = tools.createConnection();
-   console.log(sqlParams);
    conn.connect(function(err) {
      
         if(err) 
@@ -57,7 +59,33 @@ module.exports = {
     });
    
    // push them to the db
- }
+ },
+  
+adminLogin : function(req) {
+  return new Promise( function(resolve,reject) {
+    //Query if the username/password match    
+    var conn = tools.createConnection();
+    var sql = "SELECT id,email,passwordHash from administrators where username=?";
+    var sqlParams = [req.body.username]
+    conn.connect(function(err) {     
+        if(err) 
+          throw(err);
+     
+        conn.query(sql,sqlParams,function(err,results) {
+          if(results.length<1) {
+            resolve(false);
+            return;
+          }
+          if(err)
+            console.log(err);
+          bcrypt.compare(req.body.password, results[0].passwordHash, function(err, res) {
+            resolve(res);
+          });
+        });
+    });
+    
+  });
+}
 
 
 }

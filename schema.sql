@@ -21,4 +21,17 @@ CREATE TABLE `aircraft` (
  `inspection` varchar(255) NOT NULL,
  `numberSeats` int(11) NOT NULL,
  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `administrators` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `username` varchar(50) NOT NULL,
+ `email` varchar(150) NOT NULL,
+ `passwordHash` varchar(255) NOT NULL,
+ PRIMARY KEY (`id`),
+ UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  -- default username is nwtech with the password of nwtech  
+  INSERT INTO `administrators` (`id`, `username`, `email`, `passwordHash`) VALUES
+(1, 'nwtech', 'nwtech@csumb.edu', '$2a$10$B7wXUpVEvGpcm77kJgHnpu2aF/kKNwsJS3swo2wd3wDSbw/SFIIme');
+  
