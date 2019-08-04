@@ -28,8 +28,8 @@ app.get("/search", function(req, res){
    res.render("results.ejs");
 });
 
-app.get("/login", function(req, res) {
-   res.render("login.ejs");
+app.get("/userLoginAction", function(req, res) {
+   res.render("login.ejs", {"loginError":""});
 })
 
 app.get("/adminLogin", function(req, res) {
@@ -89,6 +89,10 @@ app.get("/adminLoginAction", function(req, res) {
   res.render("adminLogin.ejs", {"loginError":""});
 });
 
+app.get("/userLoginAction", function(req, res) {
+  res.render("login.ejs", {"loginError":""});
+});
+
 app.post("/userAuthenticate", async function(req,res) {
   var loginSuccessful = await admin.userLogin(req,res,false); 
   if(loginSuccessful) {      
@@ -98,8 +102,7 @@ app.post("/userAuthenticate", async function(req,res) {
     res.render("index.ejs"); 
   }
   else {
-    //todo: add error text
-      res.render("login.ejs"); 
+      res.render("login.ejs", {"loginError":"Invalid password, "});
     }
 });
 

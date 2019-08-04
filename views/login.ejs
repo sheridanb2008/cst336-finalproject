@@ -5,6 +5,11 @@
             <div id="createAccountBlock">
             <div id="createAccountContainer">
                <h3 id="createAccountTitle">Welcome back</h3>
+              <div>
+                <p id="loginErrorText">
+                  <%=loginError %>
+                </p>
+              </div>
                <form action="/userAuthenticate" method="POST">
                   <div class="form-group">
                      <label id="formLabel" for="formGroupInput">E-mail address</label>
