@@ -312,6 +312,24 @@ input {
     width: 500px;
  }
 
+<<<<<<< HEAD
+=======
+.form-groupB {
+    text-align: left;
+    width: 500px
+}
+
+.form-groupC {
+    text-align: left;
+    width: 500px;
+}
+
+.form-check-label {
+    display: inline-block;
+    width: 140px;
+    text-align: left;
+}
+>>>>>>> 1649c3b5b8a07f070ede60c32a10ec510bd88664
  .form-control {
     margin-top: 0px;
     width: 336px;
@@ -336,13 +354,21 @@ input {
 
 .form-check-input {
    margin-left: 0px;
+<<<<<<< HEAD
+=======
+  margin-top: 20px;
+>>>>>>> 1649c3b5b8a07f070ede60c32a10ec510bd88664
 }
 
 #createAccountContainer {
    background-color: #fff;
    padding-left: 40px;
    width: 416px;
+<<<<<<< HEAD
    height: 385px;
+=======
+   height: 425px;
+>>>>>>> 1649c3b5b8a07f070ede60c32a10ec510bd88664
 }
 
 #createAccountTitle {
