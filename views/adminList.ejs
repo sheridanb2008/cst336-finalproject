@@ -9,16 +9,51 @@
 
 <table border="1" padding="2px">
   <tr>
-    <% columns.forEach(function(key) { %>
-      <th>  <%= key %> </th>
-    <% }) %>  
+    
+    <th>Manufacturer</th>
+    <th>Model</th>
+    <th>Year</th>
+    <th>Condition</th>
+    <th>Total Time</th>
+    <th>Total Landings</th>
+    <th>Engine Type</th>
+    <th>Engine Hours</th>
+    <th>Engine Cycles</th>
+    <th>ADS-B Equipped</th>
+    <th>Avionics</th>
+    <th>Color Scheme</th>
+    <th># Seats</th>
+    <th>Galley</th>
+    <th>Galley Configuration</th>
+    <th>Lavatory</th>
+    <th>Lavatory Configuration</th>
+    <th>Interior</th>
+    <th>Inspection</th>
+    <th>Serial Number</th>
   </tr>
   
   <% rows.forEach(function(row) { %>
       <tr>  
-        <% columns.forEach(function(key) { %>
-          <td>  <%= row[key] %> </td>
-        <% }) %>
+          <td><%= row['manufacturer'] %></td>
+          <td><%= row['model'] %></td>
+          <td><%= row['year'] %></td>
+          <td><%= row['aircraftCondition'] %></td>
+          <td><%= row['totalTime'] %></td>
+          <td><%= row['totalLandings'] %></td>
+          <td><%= row['engineType'] %></td>
+          <td><%= row['engineHours'] %></td>
+          <td><%= row['totalLandings'] %></td>
+          <td><%= row['adsbEquipped'] %></td>
+          <td><%= row['avionics'] %></td>
+          <td><%= row['colorScheme'] %></td>
+          <td><%= row['numSeats'] %></td>
+          <td><%= row['galley'] %></td>
+          <td><%= row['galleyConfig'] %></td>
+          <td><%= row['lavatory'] %></td>
+          <td><%= row['lavatoryConfig'] %></td>
+          <td><%= row['interior'] %></td>
+          <td><%= row['inspection'] %></td>
+          <td><%= row['serialNumber'] %></td>
       </tr>
     <% }) %>
   
