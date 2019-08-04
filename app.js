@@ -46,11 +46,17 @@ app.get("/dataEntry", function(req, res) {
 
 
 app.post("/api/addAircraft", function(req, res) {
-  admin.addAircraft(req,res);
+  if(req.session.authenticated) {
+    admin.addAircraft(req,res);
+  }
+  else {
+      res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again."});
+  }
 });
 
 //This is a temporary route while the admin login gets worked out.
 app.get("/adminList", function(req, res) {
+  if(req.session.authenticated) {
     var sql;
     var sqlParams;
     var conn = tools.createConnection();
@@ -64,15 +70,24 @@ app.get("/adminList", function(req, res) {
                   columns.push(field.name);
                 })
                 res.render("adminList", {"rows":results,"columns":columns});
-              
+
         });
     });
+  }
+  else {
+    res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again."});
+  }
 });
 
-app.post("/adminLogin", async function(req,res) {
+app.get("/adminLoginAction", function(req, res) {
+  res.render("adminLogin.ejs", {"loginError":""});
+});
+
+app.post("/adminAuthenticate", async function(req,res) {
     var loginSuccessful = await admin.adminLogin(req,res);  
   
     if(loginSuccessful) {
+      req.session.authenticated = true;
       var sql;
       var sqlParams;
       var conn = tools.createConnection();
@@ -91,7 +106,7 @@ app.post("/adminLogin", async function(req,res) {
     }
   else {
     //todo: render failed login
-    res.redirect("/");
+    res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again."});
   }
   
 });

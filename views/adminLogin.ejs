@@ -1,11 +1,17 @@
 <% include partials/header.ejs %>
 
       <main>
+        
          <div id="header"></div>
             <div id="createAdminAccountBlock">
             <div id="createAccountContainer">
                <h3 id="createAccountTitle">Administrative log in</h3>
-               <form action="/adminLogin" method="POST">
+              <div>
+                <p id="loginErrorText">
+                  <%=loginError %>
+                </p>
+              </div>
+               <form action="/adminAuthenticate" method="POST">
                   <div class="form-group">
                      <label id="formLabel" for="formGroupInput">Username</label>
                      <input type="text" class="form-control" name="username" id="username" placeholder="Username">
