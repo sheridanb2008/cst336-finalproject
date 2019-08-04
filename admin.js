@@ -98,6 +98,7 @@ userLogin : function(req, res, adminLogin) {
                   req.session.firstName = results[0].firstName;
                   req.session.lastName = results[0].lastName;
                   req.session.email = results[0].email;
+                  req.session.userid = results[0].id;
                   resolve(true);
                   return;
                 }
@@ -109,6 +110,7 @@ userLogin : function(req, res, adminLogin) {
               req.session.firstName = results[0].firstName;
               req.session.lastName = results[0].lastName;
               req.session.email = results[0].email;
+              req.session.userid = results[0].id;
               resolve(true);
             }
             else {
