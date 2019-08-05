@@ -23,9 +23,9 @@
                            <input type="text" id="dataEntryField" size="15" placeholder="" name="model"/>
                         </div>
                         <div class="w-100"></div>
-                        <div class="col-sm-4" id="dataLabel">Condition</div>
+                        <div class="col-sm-4" id="dataLabel">Price</div>
                         <div class="col-sm-8">
-                           <input type="text" id="dataEntryField" size="15" placeholder="" name="condition"/>
+                           <input type="text" id="dataEntryField" size="15" placeholder="" name="price"/>
                         </div>
                         <div class="w-100"></div>
                         <div class="col-sm-4" id="dataLabel">Serial Number</div>
@@ -34,56 +34,34 @@
                         </div>
                         <!-- Airframe data for the plane-->
                         <div class="w-100"></div>
-                        <div class="col">Airframe</div>
+                        <div class="col">Airframe/Engines</div>
                         <div class="w-100"></div>
                         <div class="col-sm-4" id="dataLabel">Total Time</div>
                          <div class="col-sm-8">
                            <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="totalTime"/>
                          </div>
                          <div class="w-100"></div>
-                         <div class="col-sm-4" id="dataLabel">Total Landings</div>
-                         <div class="col-sm-8">
-                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="totalLandings"/>
-                         </div>
-                         <!-- Engine data for the plane-->
-                         <div class="w-100"></div>
-                         <div class="col">Engines</div>
-                         <div class="w-100"></div>
                          <div class="col-sm-4" id="dataLabel">Type</div>
                          <div class="col-sm-8">
-                           <input type="text" id="dataEntryField" size="5" placeholder="" name="engineType"/>
+<!--                            <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="engineType"/> -->
+                           <select id="dataEntryFieldSmall"  name="engineType">
+                             <option value="Jet">Jet</option>
+                             <option value="Prop">Prop</option>
+                           </select>
                          </div>
                          <div class="w-100"></div>
-                         <div class="col-sm-4" id="dataLabel">Hours</div>
+                         <div class="col-sm-4" id="dataLabel">SMOH</div>
                          <div class="col-sm-8">
-                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="engineHours"/>
+                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="smoh"/>
                          </div>
                          <div class="w-100"></div>
-                         <div class="col-sm-4" id="dataLabel">Cycles</div>
+                         <div class="col-sm-4" id="dataLabel">Inspection</div>
                          <div class="col-sm-8">
-                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="engineCycles"/>
-                         </div>
-                         <!-- Avionics data for the plane-->
-                         <div class="w-100"></div>
-                         <div class="col">Avionics</div>
-                         <div class="w-100"></div>
-                         <div class="col-sm-4" id="dataLabel">ADS-B Equipped</div>
-                         <div class="col-sm-8">
-                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="yes/no" name="adsbEquipped"/>
-                         </div>
-
-                         <div class="w-100"></div>
-                         <div class="col-sm-4" id="dataLabel">Avionics/Radios</div>
-                         <div class="col-sm-8">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="avionics"></textarea>
-                         </div>
-                         <!-- Exterior data for the plane-->
-                         <div class="w-100"></div>
-                         <div class="col">Exterior</div>
-                         <div class="w-100"></div>
-                         <div class="col-sm-4" id="dataLabel">Color scheme</div>
-                         <div class="col-sm-8">
-                           <input type="text" id="dataEntryField" size="5" placeholder="" name="colorScheme"/>
+<!--                            <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="inspection"/> -->
+                           <select id="dataEntryFieldSmall" name="inspection">
+                             <option value="Pass">Pass</option>
+                             <option value="Fail">Fail</option>
+                           </select>
                          </div>
                          <!-- Interior data for the plane-->
                          <div class="w-100"></div>
@@ -93,38 +71,14 @@
                          <div class="col-sm-8">
                            <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="numberSeats"/>
                          </div>
-                         <div class="w-100"></div>
-                         <div class="col-sm-4" id="dataLabel">Galley</div>
-                         <div class="col-sm-8">
-                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="yes/no" name="galley"/>
-                         </div>
-                         <div class="w-100"></div>
-                         <div class="col-sm-4" id="dataLabel">Galley configuration</div>
-                         <div class="col-sm-8">
-                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="galleyConfig"/>
-                         </div>
-                         <div class="w-100"></div>
-                         <div class="col-sm-4" id="dataLabel">Lavatory</div>
-                         <div class="col-sm-8">
-                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="yes/no" name="lavatory"/>
-                         </div>
-                         <div class="w-100"></div>
-                         <div class="col-sm-4" id="dataLabel">Lavatory configuration</div>
-                         <div class="col-sm-8">
-                           <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="lavatoryConfig"/>
-                         </div>
-                         <div class="w-100"></div>
-                         <div class="col-sm-4" id="dataLabel">Interior</div>
-                         <div class="col-sm-8">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="interior"></textarea>
-                         </div>
+                         
                         <!-- Inspection data for the plane-->
                         <div class="w-100"></div>
-                         <div class="col">Inspection</div>
+                         <div class="col">Image</div>
                         <div class="w-100"></div>
-                        <div class="col-sm-4" id="dataLabel">Status</div>
+                        <div class="col-sm-4" id="dataLabel">URL</div>
                         <div class="col-sm-8">
-                          <input type="text" id="dataEntryField" size="5" placeholder="" name="inspection"/>
+                          <input type="text" id="dataEntryField"  placeholder="" name="imageURL"/>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                      </div>

@@ -12,39 +12,23 @@ module.exports = {
    var year = req.body.year;
    var manufacturer = req.body.manufacturer;   
    var model = req.body.model;
-   //condition is a reserved mysql keyword, so we use aircraft_condition
-   var aircraftCondition = req.body.condition;
+   var price = req.body.price;
    var serialNumber = req.body.serialNumber;
    var totalTime = req.body.totalTime;
-   var totalLandings = req.body.totalLandings;
    var engineType = req.body.engineType;
-   var engineHours = req.body.engineHours;
-   var engineCycles = req.body.engineCycles;
-   var adsbEquipped = false;
-   if(req.body.adsbEquipped=="yes")
-      adsbEquipped = true;
-   var avionics = req.body.avionics;
-   var colorScheme = req.body.colorScheme;
+   var smoh = req.body.smoh;
+   var inspection = req.body.inspection;  
    var numberSeats = req.body.numberSeats;
-   var galley = false;
-   if(req.body.galley=="yes")
-     galley = true;
-   var galleyConfig = req.body.galleyConfig;
-   var interior = req.body.interior;
-   var lavatory = false;
-   if(req.body.lavatory=="yes")
-     lavatory = true;
-   var lavatoryConfig = req.body.lavatoryConfig;
-   var inspection = req.body.inspection;
+   var imageURL = req.body.imageURL;
+
+   
    var sqlParams = [
-     year,manufacturer,model,aircraftCondition,serialNumber,totalTime,totalLandings,
-     engineType,engineHours,engineCycles,adsbEquipped,avionics,colorScheme,
-     galley,galleyConfig,lavatory,lavatoryConfig,inspection,numberSeats,interior     
+     year,manufacturer,model,price,serialNumber,totalTime,
+     engineType,smoh,inspection,numberSeats,imageURL     
    ] ;
-   var sql = "INSERT INTO aircraft (year,manufacturer,model,aircraftCondition," + 
-       "serialNumber,totalTime,totalLandings,engineType,engineHours,engineCycles," + 
-       "adsbEquipped,avionics,colorScheme,galley,galleyConfig,lavatory,lavatoryConfig,inspection,numberSeats,interior) " +
-       "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+   var sql = "INSERT INTO aircraft (year,manufacturer,model,price," + 
+       "serialNumber,totalTime,engineType,smoh,inspection,numberSeats,imageURL) " +
+       "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
    var conn = tools.createConnection();
    conn.connect(function(err) {
      

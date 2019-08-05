@@ -13,6 +13,16 @@ module.exports = {
     
     return conn;
 }
+// createConnection: function() {
+
+//     var conn = mysql.createConnection({
+//         host:"localhost", 
+//         user: "root", 
+//         password:"", 
+//         database: "team_final"});
+    
+//     return conn;
+// }
   
   
 }

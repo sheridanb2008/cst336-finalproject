@@ -421,3 +421,10 @@ input {
    color: red;
    width: 336px;
 }
+#tableList {
+  text-align:center;
+  width:100%
+}
+.listImage {
+  padding: 5px;
+}

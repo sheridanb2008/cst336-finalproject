@@ -1,63 +1,54 @@
 <% include partials/header.ejs %>
+<div id="header"></div>
 
-<p>
-  Aircraft in Inventory
-</p>
 
 <br><br><br><br><br>
-
-
-<table border="1" padding="2px">
+<h2>
+  Aircraft in Inventory
+</h2>
+<a class="btn btn-primary" href="/dataentry" role="button">Add New Listing</a>
+<br><br>
+<table id="tableList" border="1" padding="5px">
   <tr>
     
+    <th>Year</th>
     <th>Manufacturer</th>
     <th>Model</th>
-    <th>Year</th>
-    <th>Condition</th>
-    <th>Total Time</th>
-    <th>Total Landings</th>
-    <th>Engine Type</th>
-    <th>Engine Hours</th>
-    <th>Engine Cycles</th>
-    <th>ADS-B Equipped</th>
-    <th>Avionics</th>
-    <th>Color Scheme</th>
-    <th># Seats</th>
-    <th>Galley</th>
-    <th>Galley Configuration</th>
-    <th>Lavatory</th>
-    <th>Lavatory Configuration</th>
-    <th>Interior</th>
-    <th>Inspection</th>
+    <th>Price</th>
     <th>Serial Number</th>
+    <th>Total Time</th>
+    <th>Engine Type</th>
+    <th>SMOH</th>
+    <th>Inspection</th>
+    <th># Seats</th>
+    <th>Image URL</th>
+      
+    
   </tr>
   
   <% rows.forEach(function(row) { %>
-      <tr>  
+      <tr> 
+          <td><%= row['year'] %></td>
           <td><%= row['manufacturer'] %></td>
           <td><%= row['model'] %></td>
-          <td><%= row['year'] %></td>
-          <td><%= row['aircraftCondition'] %></td>
-          <td><%= row['totalTime'] %></td>
-          <td><%= row['totalLandings'] %></td>
-          <td><%= row['engineType'] %></td>
-          <td><%= row['engineHours'] %></td>
-          <td><%= row['totalLandings'] %></td>
-          <td><%= row['adsbEquipped'] %></td>
-          <td><%= row['avionics'] %></td>
-          <td><%= row['colorScheme'] %></td>
-          <td><%= row['numSeats'] %></td>
-          <td><%= row['galley'] %></td>
-          <td><%= row['galleyConfig'] %></td>
-          <td><%= row['lavatory'] %></td>
-          <td><%= row['lavatoryConfig'] %></td>
-          <td><%= row['interior'] %></td>
-          <td><%= row['inspection'] %></td>
+          <td><%= row['price'] %></td>
           <td><%= row['serialNumber'] %></td>
+          <td><%= row['totalTime'] %></td>
+          <td><%= row['engineType'] %></td>
+          <td><%= row['smoh'] %></td>
+          <td><%= row['inspection'] %></td>
+          <td><%= row['numberSeats'] %></td>
+          <td><img class = "listImage" src = <%= row['imageURL'] %> width = 100 height = 100></td>
+          <td> 
+            <a id = <%= row['id'] %> class="btn btn-primary" href="/dataentry" role="button">Update</a>
+            <a id = <%= row['id'] %> class="btn btn-primary" href="/dataentry" role="button">Delete</a>
+          </td>    
+          
+          
       </tr>
     <% }) %>
   
 </table>
-
+<br>
 
 <% include partials/footer.ejs %>
