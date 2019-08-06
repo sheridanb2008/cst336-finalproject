@@ -167,15 +167,15 @@ input {
 }
 
 #planeDataBlock {
+   width: 100%;
    margin-top: 60px;
-   height: 1800px;
+   height: 1100px;
    background-color: #fff;
-   padding-top: 180px;
-   padding-left: 100px;
-   padding-right: 100px;
+   padding-top: 100px;
    margin-top:0px;
    text-align: center;
    color: #1F2A3C;
+   background-color: #eaeeff;
 }
 
 #createAccountBlock {
@@ -278,6 +278,7 @@ input {
     padding-bottom: 5px;
     padding-left: 10px;
     color: #485057;
+    background-color: #F5F5F5;
  }
 
  #dataEntryFieldSmall {
@@ -287,9 +288,10 @@ input {
    padding-top: 5px;
    padding-bottom: 5px;
    padding-left: 10px;
-   border-radius: 5px;
+   border-radius: 0px;
    color: #485057;
    width: 100px;
+   background-color: #F5F5F5;
 }
 
 .form-control {
@@ -300,6 +302,7 @@ input {
 
  #dataLabel {
     text-align: right;
+    padding-top: 6px;
  }
 
  .containerPlaneData {
@@ -364,6 +367,15 @@ input {
    padding-left: 40px;
    width: 416px;
    height: 425px;
+   margin-right: 0px;
+}
+
+#dataEntryContainer {
+   background-color: #fff;
+   padding-left: 40px;
+   width: 80%;
+   height: 725px;
+   margin: 0 auto;
 }
 
 #createAccountTitle {
@@ -427,4 +439,15 @@ input {
 }
 .listImage {
   padding: 5px;
+}
+
+.custom-select {
+   height: 36px;
+   margin-bottom: 17px;
+   background-color: #F5F5F5;
+   
+}
+
+#reset-btn {
+   background-color: #8A8699;
 }
