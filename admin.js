@@ -38,8 +38,32 @@ module.exports = {
         conn.query(sql,sqlParams,function(err,results) {
           if(err)
             console.log(err);
-          res.send("OK");
+          return res.redirect('/adminList');
         });
+    });
+   
+   // push them to the db
+ },
+  
+//   Delete Aircraft
+   deleteAircraft: function(req, res) {
+   //Get the parameters from the request
+   var id = req.body.id;
+   
+   var sqlParams = id ;
+   console.log(sqlParams);
+   var sql = "DELETE FROM aircraft WHERE id = ?"
+   var conn = tools.createConnection();
+   conn.connect(function(err) {
+     
+        if(err) throw(err);
+     console.log("connected.");
+       conn.query(sql,sqlParams,function(err,results) {
+          if(err) throw err;
+            console.log(err);
+          res.send("true");
+          });
+     
     });
    
    // push them to the db

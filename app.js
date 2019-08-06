@@ -53,11 +53,22 @@ app.get("/dataEntry", function(req, res) {
   }
 })
 
-
 app.post("/api/addAircraft", function(req, res) {
   if(req.session.authenticated) {
     console.log("isAdmin: " + req.session.isAdmin);
     admin.addAircraft(req,res);
+  }
+  else {
+      res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again."});
+  }
+});
+
+//  Delete Aircraft
+app.post("/api/deleteAircraft", async function(req, res) {
+   
+  if(req.session.authenticated) {
+      console.log("isAdmin: " + req.session.isAdmin);
+      admin.deleteAircraft(req,res);    
   }
   else {
       res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again."});
