@@ -4,66 +4,55 @@
          <div id="header"></div>
             <div id="planeDataBlock">
                <div id="dataEntryContainer">
-               <h3 id="createAccountTitle">Data entry</h3>
+               <h3 id="createAccountTitle">Airplane data entry</h3><br>
                <form action="/api/addAircraft" method="POST">
                   <div class="containerPlaneData">
-                     <div class="row">
+                     <div class="row" id="data-row">
+                        <!-- general information on the plane -->
                         <div class="col-sm-2"><hr>General Information</div>
                         <div class="col-sm-4">
                            <label id="formLabel" for="formGroupInput">Manufacturer</label>
                            <input type="text" id="dataEntryField" size="15" placeholder="" name="manufacturer"/>
                         </div><br>
-
                         <div class="w-100"></div>
-
                         <div class="col-sm-2"></div>
                         <div class="col-sm-2">
                            <label id="formLabel" for="formGroupInput">Model</label>
                            <input type="text" id="dataEntryField" size="15" placeholder="" name="model"/>
                         </div>
-
                         <div class="w-100"></div>
-
                         <div class="col-sm-2"></div>
                         <div class="col-sm-2">
                            <label id="formLabel" for="formGroupInput">Year</label><br>
                            <input type="text" id="dataEntryFieldSmall" size="15" placeholder="YYYY" name="year"/>
                         </div>
-
                         <div class="col-sm-2">
-                           <label id="formLabel" for="formGroupInput">Serial No.</label><br>
+                           <label id="formLabel" for="formGroupInput">Serial number</label><br>
                            <input type="text" id="dataEntryFieldSmall" size="15" placeholder="" name="serialNumber"/>
                         </div>
-
                         <div class="col-sm-2">
                            <label id="formLabel" for="formGroupInput">Price</label><br>
                            <input type="text" id="dataEntryFieldSmall" size="15" placeholder="" name="price"/>
                         </div>
-
-
+                        <!-- engine details on the plane -->
                         <div class="w-100"></div>
-
                         <div class="col-sm-2"><hr>Engine Details</div>
-
                         <div class="col-sm-2">
                            <label id="formLabel" for="formGroupInput">Hours</label><br>
                            <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="totalTime"/>
                         </div>
-
                         <div class="col-sm-2">
-                           <label id="formLabel" for="formGroupInput">Serial No.</label><br>
+                           <label id="formLabel" for="formGroupInput">Engine type</label><br>
                            <select class="custom-select" id="dataEntryFieldSmall" name="engineType">
                               <option selected>Select</option>
                               <option value="Jet">Jet</option>
                               <option value="Prop">Prop</option>
                             </select>
                         </div>
-
                         <div class="col-sm-2">
                            <label id="formLabel" for="formGroupInput">SMOH</label><br>
                            <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="smoh"/>
                         </div>
-
                         <div class="col-sm-2">
                            <label id="formLabel" for="formGroupInput">Inspection</label><br>
                            <select class="custom-select" id="dataEntryFieldSmall" name="inspection">
@@ -72,32 +61,27 @@
                               <option value="Fail">Fail</option>
                            </select>
                         </div>
-
+                        <!-- interior details on the airplane -->
                         <div class="w-100"></div>
-
                         <div class="col-sm-2"><hr>Interior Details</div>
-
                         <div class="col-sm-2">
-                           <label id="formLabel" for="formGroupInput">Number of Seats</label><br>
+                           <label id="formLabel" for="formGroupInput">Number of seats</label><br>
                            <input type="text" id="dataEntryFieldSmall" size="5" placeholder="" name="numberSeats"/>
                         </div>
-
+                        <!-- image of the airplane -->
                         <div class="w-100"></div>
-
                         <div class="col-sm-2"><hr>Airplane Image</div>
                         <div class="col-sm-4">
                            <label id="formLabel" for="formGroupInput">URL</label>
                            <input type="text" id="dataEntryField"  placeholder="" name="imageURL"/>
                         </div>
-
+                        <!-- reset and submit buttons -->
                         <div class="w-100"></div>
-
                         <div class="col-sm-2"></div>
                         <div class="col-sm-4">
                            <button type="reset" id="reset-btn" class="btn btn-primary" value="Reset" onClick="window.location.reload()">RESET</button>
-                           <button type="submit" class="btn btn-primary">SUBMIT</button>
+                           <button type="submit" id="submit-btn" class="btn btn-primary">SUBMIT</button>
                         </div>
-
                      </div> <!-- end of row class -->
                   </div>
                </form>

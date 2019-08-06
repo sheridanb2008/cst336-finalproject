@@ -169,9 +169,9 @@ input {
 #planeDataBlock {
    width: 100%;
    margin-top: 60px;
-   height: 1100px;
+   height: 950px;
    background-color: #fff;
-   padding-top: 100px;
+   padding-top: 130px;
    margin-top:0px;
    text-align: center;
    color: #1F2A3C;
@@ -281,6 +281,10 @@ input {
     background-color: #F5F5F5;
  }
 
+ #dataEntryField:focus {
+    border-color: #00306d;
+ }
+
  #dataEntryFieldSmall {
    margin-top: 0px;
    margin-left: 0px;
@@ -292,6 +296,10 @@ input {
    color: #485057;
    width: 100px;
    background-color: #F5F5F5;
+}
+
+#dataEntryFieldSmall:focus {
+   border-color: #00306d;
 }
 
 .form-control {
@@ -374,6 +382,7 @@ input {
    background-color: #fff;
    padding-left: 40px;
    width: 80%;
+   min-width: 950px;
    height: 725px;
    margin: 0 auto;
 }
@@ -445,9 +454,23 @@ input {
    height: 36px;
    margin-bottom: 17px;
    background-color: #F5F5F5;
-   
 }
 
 #reset-btn {
    background-color: #8A8699;
+   border-color: #8A8699;
+   width: 100px;
+}
+
+#reset-btn:hover {
+   background-color: rgba(138, 134, 153, 0.788);
+   border-color: rgba(138, 134, 153, 0.788);
+}
+
+#submit-btn {
+   width: 100px;
+}
+
+#data-row {
+   width: 1100px;
 }
