@@ -71,9 +71,10 @@ h4 {
    border-radius: 0px;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-update:hover {
    background-color: #475DA1;
    border-color: #475DA1;
+   color: #fff;
 }
 
 #searchBtn {
@@ -393,6 +394,13 @@ input {
    text-align: left;
 }
 
+#adminListTitle {
+   font-family: 'Barlow Condensed', sans-serif;
+   padding-top: 125px;
+   padding-left: 70px;
+   text-align: left;
+}
+
 #account-btn {
    font-family: 'Barlow Condensed', sans-serif;
    width: 336px;
@@ -443,8 +451,12 @@ input {
    width: 336px;
 }
 #tableList {
-  text-align:center;
-  width:100%
+   text-align:center;
+   width:90%;
+   margin: 0 auto;
+   font-family: 'Barlow', sans-serif;
+   font-size: 14px;
+   margin-bottom: 70px;
 }
 .listImage {
   padding: 5px;
@@ -462,9 +474,10 @@ input {
    width: 100px;
 }
 
-#reset-btn:hover {
+#reset-btn:hover, .btn-delete:hover {
    background-color: rgba(138, 134, 153, 0.788);
    border-color: rgba(138, 134, 153, 0.788);
+   color: #fff;
 }
 
 #submit-btn {
@@ -473,4 +486,47 @@ input {
 
 #data-row {
    width: 1100px;
+}
+
+#dataInputSectionLabel {
+   font-family: 'Barlow Condensed', sans-serif;
+   font-size: 18px;
+}
+
+th {
+   font-family: 'Barlow Condensed', sans-serif;
+   font-weight: normal;
+   font-size: 17px;
+}
+
+thead {
+   color: #fff;
+   background-color: #475da1;
+}
+
+#addNewListing {
+   margin: 0 auto;
+   width: 90%;
+   text-align: right;
+   padding-bottom: 10px;
+}
+
+.btn-update {
+   font-family: 'Barlow Condensed', sans-serif;
+   margin-top: 7px;
+   margin-right: 5px;
+   background-color: #00306D;
+   border-color: #00306D;
+   color: #fff;
+   border-radius: 0px;
+}
+
+.btn-delete {
+   font-family: 'Barlow Condensed', sans-serif;
+   margin-top: 10px;
+   margin-right: 6px;
+   background-color: #8A8699;
+   border-color: #8A8699;
+   border-radius: 0px;
+   color: #fff;
 }
