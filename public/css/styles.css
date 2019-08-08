@@ -271,7 +271,7 @@ input {
     margin-top: 0px;
  }
 
- #dataEntryField {
+ .dataEntryField {
     margin-top: 0px;
     margin-left: 0px;
     font-size: 16px;
@@ -282,11 +282,11 @@ input {
     background-color: #F5F5F5;
  }
 
- #dataEntryField:focus {
+ .dataEntryField:focus {
     border-color: #00306d;
  }
 
- #dataEntryFieldSmall {
+ .dataEntryFieldSmall {
    margin-top: 0px;
    margin-left: 0px;
    font-size: 16px;
@@ -299,7 +299,7 @@ input {
    background-color: #F5F5F5;
 }
 
-#dataEntryFieldSmall:focus {
+.dataEntryFieldSmall:focus {
    border-color: #00306d;
 }
 
@@ -465,6 +465,16 @@ input {
 .custom-select {
    height: 36px;
    margin-bottom: 17px;
+   background-color: #F5F5F5;
+   margin-top: 0px;
+   margin-left: 0px;
+   font-size: 16px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   padding-left: 10px;
+   border-radius: 0px;
+   color: #485057;
+   width: 100px;
    background-color: #F5F5F5;
 }
 

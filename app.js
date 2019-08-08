@@ -45,19 +45,43 @@ app.get("/signUp", function(req, res) {
 })
 
 app.get("/dataEntry", function(req, res) {
+//   console.log(req.query.results);
+  var results = [{
+  id: '',
+  year: '',
+  manufacturer: '',
+  model: '',
+  price: '',
+  serialNumber: '',
+  totalTime: '',
+  engineType: '',
+  smoh: '',
+  inspection: '',
+  numberSeats: '',
+  imageURL: ''
+}]
+  console.log(req.query.id);
+  
   if(req.session.authenticated && req.session.isAdmin) {
-   res.render("dataEntry.ejs");
+   
+    res.render("dataEntry.ejs",{results});
   }
   else {
     res.render("adminLogin.ejs", {"loginError":"Sign in as an administrator."});
   }
 })
 
+
 app.post("/api/addAircraft", function(req, res) {
+  
+  
   if(req.session.authenticated) {
     console.log("isAdmin: " + req.session.isAdmin);
+    if(req.body.form != '') {
+    admin.updateAircraft(req,res);  
+    }else{
     admin.addAircraft(req,res);
-  }
+  }}
   else {
       res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again."});
   }
@@ -72,6 +96,28 @@ app.post("/api/deleteAircraft", async function(req, res) {
   }
   else {
       res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again."});
+  }
+});
+
+// Modify Aircraft
+app.get("/modifyAircraft", function(req, res) {
+// res.render("dataEntry.ejs");
+     if(req.session.authenticated) {
+//     res.render("dataEntry.ejs");
+    var sql;
+    var sqlParams = req.query.id;
+    var conn = tools.createConnection();
+    sql = "SELECT * from aircraft WHERE id = ?";
+    conn.connect(function(err) {
+        if(err) throw(err);
+            conn.query(sql, sqlParams, function(err,results) {
+                if(err) throw(err);
+                  res.render("dataEntry.ejs",{results});
+        });
+    });
+  }
+  else {
+    res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again."});
   }
 });
 

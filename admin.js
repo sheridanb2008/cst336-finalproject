@@ -44,6 +44,45 @@ module.exports = {
    
    // push them to the db
  },
+
+//   Update Aircraft
+ updateAircraft: function(req, res) {
+   //Get the parameters from the request
+   var id = req.body.form;
+   var year = req.body.year;
+   var manufacturer = req.body.manufacturer;   
+   var model = req.body.model;
+   var price = req.body.price;
+   var serialNumber = req.body.serialNumber;
+   var totalTime = req.body.totalTime;
+   var engineType = req.body.engineType;
+   var smoh = req.body.smoh;
+   var inspection = req.body.inspection;  
+   var numberSeats = req.body.numberSeats;
+   var imageURL = req.body.imageURL;
+
+   
+   var sqlParams = [
+     year,manufacturer,model,price,serialNumber,totalTime,
+     engineType,smoh,inspection,numberSeats,imageURL,id     
+   ] ;
+   var sql = "UPDATE `aircraft` SET `year`=?,`manufacturer`=?,`model`=?,`price`=?,`serialNumber`=?,`totalTime`=?," + "`engineType`=?,`smoh`=?,`inspection`=?,`numberSeats`=?,`imageURL`=? WHERE `id` = ?"
+   
+   var conn = tools.createConnection();
+   conn.connect(function(err) {
+     
+        if(err) 
+          throw(err);
+     console.log("connected.");
+        conn.query(sql,sqlParams,function(err,results) {
+          if(err)
+            console.log(err);
+          return res.redirect('/adminList');
+        });
+    });
+   
+   // push them to the db
+ },
   
 //   Delete Aircraft
    deleteAircraft: function(req, res) {

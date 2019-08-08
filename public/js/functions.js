@@ -1,4 +1,3 @@
-
 function modifyEntry(event, elem) {
   
     var elementId = $(elem).attr("id");
@@ -16,10 +15,28 @@ function modifyEntry(event, elem) {
       })
    }
   }else{
-//     ajax call to update
-  }
+    location.href="/modifyAircraft?id=" + id;
+//  $.ajax({
+//         method: "get",
+//            url: "/api/modifyAircraft",
+//           data: {"id": id},
+//        success: function(results){
+          
+//         $.ajax({
+//         method: "get",
+//            url: "/dataEntry",
+//           data: {"results": results},
+//              })
+        
+         
+         
+       }
+//       })
+//   }
   
 }
+
+
 
 
   
