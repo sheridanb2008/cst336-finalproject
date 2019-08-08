@@ -4,17 +4,17 @@
         
          <div id="header"></div>
             <div id="createAdminAccountBlock">
-            <div id="createAccountContainer">
+            <div id="adminLoginContainer">
                <h3 id="createAccountTitle">Administrative log in</h3>
                <form action="/adminAuthenticate" method="POST">
                   <div class="form-group">
                      <label id="formLabel" for="formGroupInput">Username</label>
                      <input type="text" class="form-control" name="username" id="username" placeholder="Username">
-                     <label id="formLabel" for="formGroupInput">Password</label>
-                     <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                     <div id="loginErrorText">
-                        <%=loginError %>
+                     <div id="passField">
+                        <label id="formLabel" for="formGroupInput">Password</label>
+                        <div id="loginErrorText"><%=loginError %></div>
                      </div>
+                     <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                      <button type="submit" class="btn btn-primary" id="account-btn">LOG IN</button>
                      <br><br>
                      <p id="lginText"><a href="https://www.wikihow.com/Remember-a-Forgotten-Password">Forgot password?</a></p><br>

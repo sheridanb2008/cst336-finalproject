@@ -24,6 +24,10 @@ app.get("/", function(req, res){
    res.render("index.ejs");
 });
 
+app.get("/airplaneSearch", function(req, res){
+  res.render("airplaneSearch.ejs");
+});
+
 app.get("/search", function(req, res){
    res.render("results.ejs");
 });
@@ -211,7 +215,7 @@ app.post("/adminAuthenticate", async function(req,res) {
     }
   else {
     //todo: render failed login
-    res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Please try again."});
+    res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try again."});
   }
   
 });

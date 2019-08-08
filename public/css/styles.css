@@ -36,7 +36,7 @@ h4 {
    position: absolute;
    z-index: 1;
    width: 100%;
-   background-color: #475DA1;
+   background-color: #00306d;
    height: 74px;
 }
 
@@ -78,7 +78,10 @@ h4 {
 }
 
 #searchBtn {
-   margin-top: 0px;
+   margin-top: 365px;
+   padding-left: 40px;
+   padding-right: 40px;
+   font-size: 18px;
 }
 
 #pageTitle {
@@ -127,7 +130,7 @@ input {
 #quoteBlock {
    margin-top: 60px;
    height: 310px;
-   background-color: #F9F8F7;
+   background-color: #eaeeff;
    padding-top: 120px;
    padding-left: 170px;
    padding-right: 170px;
@@ -379,6 +382,14 @@ input {
    margin-right: 0px;
 }
 
+#adminLoginContainer {
+   background-color: #fff;
+   padding-left: 40px;
+   width: 416px;
+   height: 380px;
+   margin-right: 0px;
+}
+
 #dataEntryContainer {
    background-color: #fff;
    padding-left: 40px;
@@ -446,9 +457,9 @@ input {
 }
 
 #loginErrorText {
-   font-family: 'Barlow', sans-serif;
+   font-size: 12px;
    color: red;
-   width: 336px;
+   padding-left: 10px;
 }
 #tableList {
    text-align:center;
@@ -539,4 +550,24 @@ thead {
    border-color: #8A8699;
    border-radius: 0px;
    color: #fff;
+}
+
+#navContainer {
+   padding-top: 23px;
+}
+
+#navLink {
+   font-family: 'Barlow Condensed', sans-serif;
+   font-size: 18px;
+   padding-left: 35px;
+   color: #fff;
+   text-decoration: none;
+}
+
+#navLink:hover {
+   color: #d2a517;
+} 
+
+#passField {
+   display: flex;
 }
