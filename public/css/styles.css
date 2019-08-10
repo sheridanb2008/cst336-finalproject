@@ -556,15 +556,20 @@ thead {
    padding-top: 23px;
 }
 
-#navLink {
+.navLinkHidden {
+    display: none;
+}
+
+.navLink {   
+   color: #fff;
    font-family: 'Barlow Condensed', sans-serif;
    font-size: 18px;
    padding-left: 35px;
-   color: #fff;
+
    text-decoration: none;
 }
 
-#navLink:hover {
+.navLink:hover {
    color: #d2a517;
 } 
 

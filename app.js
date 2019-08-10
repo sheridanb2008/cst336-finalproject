@@ -17,35 +17,66 @@ app.use(session({
   saveUninitialized: true
 }));
 
+
+function getAdminLoginVisibility(req) {
+    var adminLoginMenu = "navLink";
+    if(req.session.authenticated && req.session.isAdmin) {
+       adminLoginMenu = "navLinkHidden";
+    }
+    return adminLoginMenu;
+}
+
+function buildMenuBar(req) {
+    var menuHTML = '<a class="navLink" id="navLinkHome" href="/">Home</a>';
+    menuHTML += '<a class="navLink"id="navLinkAircraft" href="/airplaneSearch">Aircraft</a>';
+    if(!req.session.authenticated) {
+        menuHTML += '<a class="navLink"id="navLinkLogin" href="/userLoginAction">Log in</a>';
+    }
+    else{
+        if(!req.session.isAdmin) {
+            menuHTML += '<a class="navLink"id="navLinkLogin" href="/userLoginAction">Log out</a>';
+        }
+    }
+    menuHTML += '<a class="navLink"id="navLinkSignUp" href="/signUp">Create an account</a>';
+    if(req.session.authenticated && req.session.isAdmin) {
+        menuHTML +='<a class="navLink" id="navLinkAdminLogin" href="/adminLogoutAction">Admin log out</a>';
+    }
+    else{
+        menuHTML +='<a class="navLink" id="navLinkAdminLogin" href="/adminLoginAction">Admin log in</a>';
+    }
+
+    return menuHTML;
+}
+
 // routes =========================
 
 // root route
 app.get("/", function(req, res){
-   res.render("index.ejs");
+   res.render("index.ejs", {"menuBarHTML" : buildMenuBar(req)});
 });
 
 app.get("/airplaneSearch", function(req, res){
-  res.render("airplaneSearch.ejs");
+  res.render("airplaneSearch.ejs",{"menuBarHTML" : buildMenuBar(req)});
 });
 
 app.get("/search", function(req, res){
-   res.render("results.ejs");
+   res.render("results.ejs",{"menuBarHTML" : buildMenuBar(req)});
 });
 
 app.get("/userLoginAction", function(req, res) {
-   res.render("login.ejs", {"loginError":""});
+   res.render("login.ejs", {"loginError":"","menuBarHTML" : buildMenuBar(req)});
 })
 
 app.get("/adminLogin", function(req, res) {
-   res.render("adminLogin.ejs");
+   res.render("adminLogin.ejs", {"menuBarHTML" : buildMenuBar(req)});
 })
 
 app.get("/adminMain", function(req, res) {
-  res.render("adminMain.ejs");
+  res.render("adminMain.ejs",{"menuBarHTML" : buildMenuBar(req)});
 })
 
 app.get("/signUp", function(req, res) {
-   res.render("signUp.ejs",{"loginError":""});
+   res.render("signUp.ejs",{"loginError":"","menuBarHTML" : buildMenuBar(req)});
 })
 
 app.get("/dataEntry", function(req, res) {
@@ -71,7 +102,7 @@ app.get("/dataEntry", function(req, res) {
     res.render("dataEntry.ejs",{results});
   }
   else {
-    res.render("adminLogin.ejs", {"loginError":"Sign in as an administrator."});
+    res.render("adminLogin.ejs", {"loginError":"Sign in as an administrator.","menuBarHTML" : buildMenuBar(req)});
   }
 })
 
@@ -87,7 +118,7 @@ app.post("/api/addAircraft", function(req, res) {
     admin.addAircraft(req,res);
   }}
   else {
-      res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again."});
+      res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again.","menuBarHTML" : buildMenuBar(req)});
   }
 });
 
@@ -151,7 +182,7 @@ app.get("/adminList", function(req, res) {
 });
 
 app.get("/adminLoginAction", function(req, res) {
-  res.render("adminLogin.ejs", {"loginError":""});
+  res.render("adminLogin.ejs", {"loginError":"", "menuBarHTML" : buildMenuBar(req)});
 });
 
 app.get("/userLoginAction", function(req, res) {
@@ -164,17 +195,17 @@ app.post("/userAuthenticate", async function(req,res) {
     req.session.authenticated = true;
     console.log("User authenticated.");
     //todo: This is a placeholder for the main logged in user page
-    res.render("index.ejs"); 
+    res.render("index.ejs",{"menuBarHTML" : buildMenuBar(req)}); 
   }
   else {
-      res.render("login.ejs", {"loginError":"Invalid password or user id."});
+      res.render("login.ejs", {"loginError":"Invalid password or user id.","menuBarHTML" : buildMenuBar(req)});
     }
 });
 
 app.post("/createUser", async function(req,res) {
   var userExists = await admin.userAlreadyExists(req.body.email);
   if(userExists) {
-    res.render("signUp.ejs", {"loginError":"A user with this email address already exists"});
+    res.render("signUp.ejs", {"loginError":"A user with this email address already exists","menuBarHTML" : buildMenuBar(req)});
     return;
   }
   else{
@@ -184,10 +215,10 @@ app.post("/createUser", async function(req,res) {
             req.body.password,
             req.body.agreeSpam);
     if(userCreated) {
-      res.render("login.ejs", {"loginError":"User account created successfully. You can now login."});
+      res.render("login.ejs", {"loginError":"User account created successfully. You can now login.","menuBarHTML" : buildMenuBar(req)});
     }
     else {
-      res.render("signUp.ejs", {"loginError":"Unknown error creating user."});
+      res.render("signUp.ejs", {"loginError":"Unknown error creating user.","menuBarHTML" : buildMenuBar(req)});
     }
   }
 });
@@ -209,13 +240,13 @@ app.post("/adminAuthenticate", async function(req,res) {
                   fields.forEach(function(field) {
                     columns.push(field.name);
                   })             
-                  res.render("adminList", {"rows":results,"columns":columns});
+                  res.render("adminList", {"rows":results,"columns":columns,"menuBarHTML" : buildMenuBar(req)});
           });
       });
     }
   else {
     //todo: render failed login
-    res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try again."});
+    res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try again.","menuBarHTML" : buildMenuBar(req)});
   }
   
 });

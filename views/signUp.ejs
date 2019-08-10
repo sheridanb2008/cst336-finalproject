@@ -13,13 +13,13 @@
                <form action="/createUser" method="POST">
                   <div class="form-group">
                      <label id="formLabel" for="formGroupInput">First name</label>
-                     <input type="text" class="form-control" id="formGroupInput" name="firstName" placeholder="First name">
+                     <input type="text" class="form-control" id="firstNameInput" name="firstName" placeholder="First name">
                      <label id="formLabel" for="formGroupInput">Last name</label>
-                     <input type="text" class="form-control" id="formGroupInput" name="lastName" placeholder="Last name">
+                     <input type="text" class="form-control" id="lastNameInput" name="lastName" placeholder="Last name">
                      <label id="formLabel" for="formGroupInput">E-mail address</label>
-                     <input type="text" class="form-control" id="formGroupInput" name="email" placeholder="example@example.com">
+                     <input type="text" class="form-control" id="emailInput" name="email" placeholder="example@example.com">
                      <label id="formLabel" for="formGroupInput">Password</label>
-                     <input type="password" class="form-control" id="formGroupInput" name="password" placeholder="Password (min of 8 characters)"><br>
+                     <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Password (min of 8 characters)"><br>
                   
                  </div>
                  <div class="form-groupB">
@@ -36,7 +36,7 @@
                 </div>
                  
                 <div class="form-groupC">
-                     <button type="submit" class="btn btn-primary" id="account-btn">JOIN</button>
+                     <button type="submit" onsubmit="signupValidate(event)" class="btn btn-primary" id="account-btn">JOIN</button>
                      <br><br>
                      <p id="checkboxText">Already have an account? <a href="/login">Log in</a></p><br>
                 </div>
@@ -44,7 +44,18 @@
                </form>
                </div> <!-- end of createAccountContainer div-->
             </div>
+            <script>
+               function signupValidate(event) {
+
+                  event.preventDefault();
+                  alert("Nope!");
+               }
+            $("#account-btn").on("submit",function(event) {
+               alert("submitting form");
+               event.preventDefault();          
+            });
             
+            </script>
          <div>
 
 <% include partials/footer.ejs %>
