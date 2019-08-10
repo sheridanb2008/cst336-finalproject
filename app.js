@@ -17,15 +17,6 @@ app.use(session({
   saveUninitialized: true
 }));
 
-
-function getAdminLoginVisibility(req) {
-    var adminLoginMenu = "navLink";
-    if(req.session.authenticated && req.session.isAdmin) {
-       adminLoginMenu = "navLinkHidden";
-    }
-    return adminLoginMenu;
-}
-
 function buildMenuBar(req) {
     var menuHTML = '<a class="navLink" id="navLinkHome" href="/">Home</a>';
     menuHTML += '<a class="navLink"id="navLinkAircraft" href="/airplaneSearch">Aircraft</a>';
@@ -34,7 +25,7 @@ function buildMenuBar(req) {
     }
     else{
         if(!req.session.isAdmin) {
-            menuHTML += '<a class="navLink"id="navLinkLogin" href="/userLoginAction">Log out</a>';
+            menuHTML += '<a class="navLink"id="navLinkLogin" href="/userLogoutAction">Log out</a>';
         }
     }
     menuHTML += '<a class="navLink"id="navLinkSignUp" href="/signUp">Create an account</a>';
@@ -99,7 +90,7 @@ app.get("/dataEntry", function(req, res) {
   
   if(req.session.authenticated && req.session.isAdmin) {
    
-    res.render("dataEntry.ejs",{results});
+    res.render("dataEntry.ejs",{"menuBarHTML" : buildMenuBar(req),"results":results});
   }
   else {
     res.render("adminLogin.ejs", {"loginError":"Sign in as an administrator.","menuBarHTML" : buildMenuBar(req)});
@@ -147,12 +138,12 @@ app.get("/modifyAircraft", function(req, res) {
         if(err) throw(err);
             conn.query(sql, sqlParams, function(err,results) {
                 if(err) throw(err);
-                  res.render("dataEntry.ejs",{results});
+                  res.render("dataEntry.ejs",{"menuBarHTML" : buildMenuBar(req), "results":results});
         });
     });
   }
   else {
-    res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again."});
+    res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again.","menuBarHTML" : buildMenuBar(req)});
   }
 });
 
@@ -177,7 +168,7 @@ app.get("/adminList", function(req, res) {
     });
   }
   else {
-    res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again."});
+    res.render("adminLogin.ejs", {"loginError":"Incorrect username or password. Try Again.","menuBarHTML" : buildMenuBar(req)});
   }
 });
 
@@ -186,8 +177,21 @@ app.get("/adminLoginAction", function(req, res) {
 });
 
 app.get("/userLoginAction", function(req, res) {
-  res.render("login.ejs", {"loginError":""});
+  res.render("login.ejs", {"loginError":"", "menuBarHTML" : buildMenuBar(req)});
 });
+
+app.get("/userLogoutAction", function(req, res) {
+    req.session.authenticated = false;
+    req.session.isAdmin = false;
+    res.render("index.ejs", {"loginError":"", "menuBarHTML" : buildMenuBar(req)});
+});
+
+app.get("/adminLogoutAction", function(req, res) {
+    req.session.authenticated = false;
+    req.session.isAdmin = false;
+    res.render("index.ejs", {"loginError":"", "menuBarHTML" : buildMenuBar(req)});
+});
+  
 
 app.post("/userAuthenticate", async function(req,res) {
   var loginSuccessful = await admin.userLogin(req,res,false); 
