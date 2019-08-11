@@ -46,9 +46,23 @@ app.get("/", function(req, res){
    res.render("index.ejs", {"menuBarHTML" : buildMenuBar(req)});
 });
 
-app.get("/airplaneSearch", function(req, res){
-  res.render("airplaneSearch.ejs",{"menuBarHTML" : buildMenuBar(req)});
-});
+app.get("/airplaneSearch", async function(req, res){
+  
+  var conn = tools.createConnection();
+  var sql = "SELECT DISTINCT manufacturer FROM `aircraft` ORDER BY manufacturer";
+  var sql2 = "SELECT DISTINCT engineType FROM `aircraft` ORDER BY engineType";
+  conn.connect(function(err) {
+
+    if (err) throw err;
+    conn.query(sql, function(err, result) {
+       if (err) throw err;
+       res.render("airplaneSearch", {"rows": result, "menuBarHTML" : buildMenuBar(req)});
+       // console.log(JSON.stringify(result));
+    })
+
+ });
+
+}); // airplaneSearch route
 
 app.get("/search", function(req, res){
    res.render("results.ejs",{"menuBarHTML" : buildMenuBar(req)});

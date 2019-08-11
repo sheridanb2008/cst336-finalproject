@@ -84,6 +84,15 @@ h4 {
    font-size: 18px;
 }
 
+#shopBtn {
+   margin-top: 120px;
+   padding-left: 40px;
+   padding-right: 40px;
+   font-size: 18px;
+   font-style: normal;
+   z-index: 1;
+}
+
 #pageTitle {
    font-family: 'Barlow Condensed', sans-serif;
    font-size: 64px;
@@ -128,8 +137,7 @@ input {
 }
 
 #quoteBlock {
-   margin-top: 60px;
-   height: 310px;
+   height: 380px;
    background-color: #eaeeff;
    padding-top: 120px;
    padding-left: 170px;

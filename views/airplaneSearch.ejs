@@ -7,7 +7,23 @@
                <h3 id="createAccountTitle">Find your plane</h3>
               
                <form action="/userAuthenticate" method="POST">
-                  
+                  <div class="form-group">
+                     
+                     <label id="formLabel" for="formGroupInput">Make of airplane</label>
+                     <select id="dropdownMenuMake">
+                        <option value="selectOne"> Select </option>
+                        <% rows.forEach(function(row) { %>
+                           <option id="<%= row['manufacturer'] %>"> <%= row['manufacturer'] %> </option>
+                        <% }) %> 
+                     </select><br>
+                     <select id="dropdownMenuEngine">
+                        <option value="selectOne"> Select one </option>
+                        <% rows.forEach(function(row) { %>
+                           <option id="<%= row['engineType'] %>"> <%= row['engineType'] %> </option>
+                        <% }) %> 
+                     </select><br>
+
+                  </div>
                </form>
                </div> <!-- end of createAccountContainer div-->
             </div>
