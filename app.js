@@ -25,10 +25,12 @@ function buildMenuBar(req) {
     }
     else{
         if(!req.session.isAdmin) {
+          
             menuHTML += '<a class="navLink"id="navLinkLogin" href="/userLogoutAction">Log out</a>';
         }
     }
     menuHTML += '<a class="navLink"id="navLinkSignUp" href="/signUp">Create an account</a>';
+  
     if(req.session.authenticated && req.session.isAdmin) {
         menuHTML +='<a class="navLink" id="navLinkAdminLogin" href="/adminLogoutAction">Admin log out</a>';
     }
@@ -81,7 +83,7 @@ app.get("/search", async function(req, res){
   console.log(hoursEnd);
 
   let conn = tools.createConnection();
-  let sql  = "SELECT * FROM aircraft WHERE  manufacturer = '" + make + "' OR engineType = '" + engine + "'";
+  let sql  = "SELECT * FROM aircraft"; //WHERE  manufacturer = '" + make + "' OR engineType = '" + engine + "'";
   conn.connect(function(err) {
     if(err) throw(err);
         conn.query(sql,function(err,results,fields) {
@@ -111,6 +113,10 @@ app.get("/adminMain", function(req, res) {
 
 app.get("/signUp", function(req, res) {
    res.render("signUp.ejs",{"loginError":"","menuBarHTML" : buildMenuBar(req)});
+})
+
+app.get("/cart", function(req, res) {
+  res.render("shoppingCart.ejs", {"menuBarHTML" : buildMenuBar(req)});
 })
 
 app.get("/dataEntry", function(req, res) {

@@ -15,6 +15,11 @@ h4 {
    color: #fff;
 }
 
+.fa-shopping-cart {
+  padding-left: 30px;
+  font-size: 2em;
+}
+
 .container {
    position: relative;
    max-width: 1440px;
