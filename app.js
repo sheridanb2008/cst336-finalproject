@@ -49,24 +49,53 @@ app.get("/", function(req, res){
 app.get("/airplaneSearch", async function(req, res){
   
   var conn = tools.createConnection();
-  var sql = "SELECT DISTINCT manufacturer FROM `aircraft` ORDER BY manufacturer";
+  var sql  = "SELECT DISTINCT manufacturer FROM `aircraft` ORDER BY manufacturer";
   var sql2 = "SELECT DISTINCT engineType FROM `aircraft` ORDER BY engineType";
+
   conn.connect(function(err) {
 
     if (err) throw err;
     conn.query(sql, function(err, result) {
        if (err) throw err;
-       res.render("airplaneSearch", {"rows": result, "menuBarHTML" : buildMenuBar(req)});
-       // console.log(JSON.stringify(result));
+       conn.query(sql2, function(err, results) {
+         if (err) throw err;
+         res.render("airplaneSearch", {"make": result, "engine": results, "menuBarHTML" : buildMenuBar(req)});
+       })
     })
-
- });
-
+  });
 }); // airplaneSearch route
 
-app.get("/search", function(req, res){
-   res.render("results.ejs",{"menuBarHTML" : buildMenuBar(req)});
+app.get("/search", async function(req, res){
+
+  let make = req.query.make;
+  let engine = req.query.engine;
+  let priceStart = req.query.priceStart;
+  let priceEnd = req.query.priceEnd;
+  let hoursStart = req.query.hoursStart;
+  let hoursEnd = req.query.hoursEnd;
+  console.log(make);
+  console.log(engine);
+  console.log(priceStart);
+  console.log(priceEnd);
+  console.log(hoursStart);
+  console.log(hoursEnd);
+
+  let conn = tools.createConnection();
+  let sql  = "SELECT * FROM aircraft WHERE  manufacturer = '" + make + "' OR engineType = '" + engine + "'";
+  conn.connect(function(err) {
+    if(err) throw(err);
+        conn.query(sql,function(err,results,fields) {
+            if(err) throw(err);
+            var columns = [];
+            fields.forEach(function(field) {
+              columns.push(field.name);
+            })
+            res.render("results", {"rows":results,"columns":columns, "menuBarHTML" : buildMenuBar(req)});
+
+    });
 });
+
+}); // search route
 
 app.get("/userLoginAction", function(req, res) {
    res.render("login.ejs", {"loginError":"","menuBarHTML" : buildMenuBar(req)});

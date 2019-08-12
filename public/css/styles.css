@@ -407,6 +407,14 @@ input {
    margin: 0 auto;
 }
 
+#airplaneSearchContainer {
+   background-color: #fff;
+   padding-left: 40px;
+   width: 416px;
+   height: 505px;
+   margin-right: 0px;
+}
+
 #createAccountTitle {
    font-family: 'Barlow Condensed', sans-serif;
    padding-top: 32px;
@@ -582,5 +590,55 @@ thead {
 } 
 
 #passField {
+   display: flex;
+}
+
+#dropdownMenuMake, #dropdownMenuEngine {
+   width: 250px;
+   color: #A9A9A9;
+}
+
+.to {
+   padding-left: 12px;
+   padding-right: 13px;
+}
+
+#submit-btn-airplane {
+   width: 250px;
+}
+
+#searchResultsContainer {
+   margin-top: 200px;
+   z-index: 1;
+   min-height: 700px;
+   width: 800px;
+   margin: 0 auto;
+}
+
+#aircraftDetails {
+   text-align: left;
+}
+
+#searchLabel {
+   font-family: 'Barlow', sans-serif;
+   font-weight: bold;
+   padding-right: 15px;
+   width: 100px;
+}
+
+#searchRow {
+   display: flex;
+}
+
+#searchResultsBlock {
+   margin-top: 60px;
+   height: 725px;
+   background-color: #fff;
+   padding-left: 100px;
+   padding-right: 100px;
+   margin-top:0px;
+   text-align: center;
+   color: #1F2A3C;
+   background: #eaeeff;
    display: flex;
 }

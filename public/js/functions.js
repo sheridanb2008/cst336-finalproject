@@ -34,23 +34,9 @@ function modifyEntry(event, elem) {
 //       })
 //   }
   
-}
 
 
-
-
-  
-
-  
-  
-  
-
-
-
-  
-              
-                  
-                  
+}   
 
 // function dollarsToXX(dollars) {
                         
