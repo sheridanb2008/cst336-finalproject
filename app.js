@@ -36,6 +36,8 @@ function buildMenuBar(req) {
         menuHTML +='<a class="navLink" id="navLinkAdminLogin" href="/adminLoginAction">Admin log in</a>';
     }
 
+    menuHTML += '<a class="navLink" id="navLinkShoppingCart" href="/cart"><img src="img/shopping_cart.png"></a>';
+
     return menuHTML;
 }
 
