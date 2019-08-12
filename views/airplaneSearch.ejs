@@ -11,14 +11,14 @@
                      
                      <label id="formLabel" for="formGroupInput">Make of airplane</label><br>
                      <select class="custom-select" id="dropdownMenuMake" name="make">
-                        <option value="selectOne"> Select </option>
+                        <option id="selectOne"</option>
                         <% make.forEach(function(row) { %>
                            <option id="<%= row['manufacturer'] %>"> <%= row['manufacturer'] %> </option>
                         <% }) %> 
                      </select><br>
                      <label id="formLabel" for="formGroupInput">Type of engine</label><br>
                      <select class="custom-select" id="dropdownMenuEngine" name="engine">
-                        <option value="selectOne"> Select </option>
+                        <option id="selectTwo"></option>
                         <% engine.forEach(function(row) { %>
                            <option id="<%= row['engineType'] %>"> <%= row['engineType'] %> </option>
                         <% }) %> 

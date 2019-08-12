@@ -25,12 +25,10 @@ function buildMenuBar(req) {
     }
     else{
         if(!req.session.isAdmin) {
-          
             menuHTML += '<a class="navLink"id="navLinkLogin" href="/userLogoutAction">Log out</a>';
         }
     }
     menuHTML += '<a class="navLink"id="navLinkSignUp" href="/signUp">Create an account</a>';
-  
     if(req.session.authenticated && req.session.isAdmin) {
         menuHTML +='<a class="navLink" id="navLinkAdminLogin" href="/adminLogoutAction">Admin log out</a>';
     }
@@ -75,27 +73,85 @@ app.get("/search", async function(req, res){
   let priceEnd = req.query.priceEnd;
   let hoursStart = req.query.hoursStart;
   let hoursEnd = req.query.hoursEnd;
-  console.log(make);
-  console.log(engine);
-  console.log(priceStart);
-  console.log(priceEnd);
-  console.log(hoursStart);
-  console.log(hoursEnd);
 
+  let sql = "";
+  let select = "year, manufacturer, model, price, serialNumber, totalTime, engineType, smoh, inspection, numberSeats, imageURL";
   let conn = tools.createConnection();
-  let sql  = "SELECT * FROM aircraft"; //WHERE  manufacturer = '" + make + "' OR engineType = '" + engine + "'";
+  
   conn.connect(function(err) {
     if(err) throw(err);
-        conn.query(sql,function(err,results,fields) {
-            if(err) throw(err);
-            var columns = [];
-            fields.forEach(function(field) {
-              columns.push(field.name);
-            })
-            res.render("results", {"rows":results,"columns":columns, "menuBarHTML" : buildMenuBar(req)});
 
-    });
-});
+    // search make -> engine -> price -> hours
+    if (make != "" && engine != "" && priceStart != "" && priceEnd != "" && hoursStart != "" && hoursEnd != "") {
+      sql  = "SELECT " + select + " FROM aircraft WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+    }
+    // search make -> engine -> price
+    else if (make != "" && engine != "" && priceStart != "" && priceEnd != "") {
+      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + "";
+    }
+    // search make -> engine -> hours
+    else if (make != "" && engine != "" && hoursStart != "" && hoursEnd != "") {
+      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "' AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+    } 
+    // search make -> price -> hours
+    else if (make != "" && priceStart != "" && priceEnd != "" && hoursStart != "" && hoursEnd != "") {
+      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+    }
+    // search engine -> price -> hours
+    else if (engine != "" && priceStart != "" && priceEnd != "" && hoursStart != "" && hoursEnd != "") {
+      sql  = "SELECT * FROM aircraft WHERE engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+    }
+    // search make -> engine
+    else if (make != "" && engine != "") {
+      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "'";
+    }
+    // search make -> price
+    else if (make != "" && priceStart != "" && priceEnd != "") {
+      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + "";
+    }
+    // search make -> hours
+    else if (make != "" && hoursStart != "" && hoursEnd != "") {
+      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+    }
+    // search engine -> price
+    else if (engine != "" && priceStart != "" && priceEnd != "") {
+      sql  = "SELECT * FROM aircraft WHERE engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + ""; 
+    }
+    // search engine -> hours
+    else if (engine != "" && hoursStart != "" && hoursEnd != "") {
+      sql  = "SELECT * FROM aircraft WHERE engineType = '" + engine + "' AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+    }
+    // search price -> hours
+    else if (priceStart != "" && priceEnd != "" && hoursStart != "" && hoursEnd != "") {
+      sql  = "SELECT * FROM aircraft WHERE price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+    }
+    // search make
+    else if (make != "") {
+      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "'";
+    }
+    // search engine
+    else if (engine != "") {
+      sql  = "SELECT * FROM aircraft WHERE engineType = '" + engine + "'";
+    }
+    // search hours
+    else if (hoursStart != "" && hoursEnd != "") {
+      sql  = "SELECT * FROM aircraft WHERE totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+    }
+    // search price
+    else if (priceStart != "" && priceEnd != "") {
+      sql  = "SELECT * FROM aircraft WHERE price BETWEEN " + priceStart + " AND " + priceEnd + "";
+    };
+      conn.query(sql,function(err,results,fields) {
+        if(err) throw(err);
+        var columns = [];
+        fields.forEach(function(field) {
+          columns.push(field.name);
+        })
+        res.render("results", {"rows":results,"columns":columns, "menuBarHTML" : buildMenuBar(req)});
+
+      });
+    
+  });
 
 }); // search route
 
