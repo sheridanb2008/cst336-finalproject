@@ -1,16 +1,12 @@
 <% include partials/header.ejs %>
 
       <main>
-
          <div id="header"></div>
             <div id="searchResultsBlock">
                <div id="searchResultsContainer">
                   <h3 id="adminListTitle">Search results</h3>
                   
                   <table id="tableList" class="table table-striped">
-                     <thead>
-                        <tr></tr>
-                     </thead>
                      <tbody>
                         <% rows.forEach(function(row) { %>
                            <tr>
@@ -23,12 +19,14 @@
                                  <div id="searchRow"><div id="searchLabel">Flight hours</div><%= row['totalTime'] %></div>
                                  <div id="searchRow"><div id="searchLabel">SMOH</div><%= row['smoh'] %></div>
                                  <div id="searchRow"><div id="searchLabel">Inspection</div><%= row['inspection'] %></div>
-                                 <td><img class = "listImage" src = <%= row['imageURL'] %> width = 250</td></td>
+                              <td><img class = "listImage" src = <%= row['imageURL'] %> width = 250</td></td>
                            </tr>
                         <% }) %>
                      </tbody>
                   </table>
-               </div>
-            </div>
+              </div>
+        </div>
+           
+        
 
 <% include partials/footer.ejs %>

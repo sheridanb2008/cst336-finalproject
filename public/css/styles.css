@@ -241,9 +241,11 @@ input {
 }
 
 .footer {
+   bottom: 0;
    height: 340px;
    background-color: #222222;
    text-align: center;
+   position: relative;
 }
 
 /* Login styles */
@@ -632,7 +634,6 @@ thead {
 
 #searchResultsBlock {
    margin-top: 60px;
-   height: 725px;
    background-color: #fff;
    padding-left: 100px;
    padding-right: 100px;
