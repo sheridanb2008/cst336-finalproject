@@ -512,6 +512,7 @@ input {
    padding-bottom: 5px;
    padding-left: 10px;
    border-radius: 0px;
+   color: #485057;
    width: 100px;
    background-color: #F5F5F5;
 }
@@ -599,7 +600,6 @@ thead {
 
 .navLink:hover {
    color: #d2a517;
-   text-decoration: none;
 } 
 
 #passField {
@@ -608,6 +608,7 @@ thead {
 
 #dropdownMenuMake, #dropdownMenuEngine {
    width: 250px;
+   color: #A9A9A9;
 }
 
 .to {
@@ -615,14 +616,8 @@ thead {
    padding-right: 13px;
 }
 
-#resetSearch-btn {
-   background-color: #8A8699;
-   border-color: #8A8699;
-   width: 121px;
-}
-
 #submit-btn-airplane {
-   width: 121px;
+   width: 250px;
 }
 
 #aircraftDetails {

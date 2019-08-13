@@ -85,7 +85,7 @@ app.get("/search", async function(req, res){
 
     // search make -> engine -> price -> hours
     if (make != "" && engine != "" && priceStart != "" && priceEnd != "" && hoursStart != "" && hoursEnd != "") {
-      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+      sql  = "SELECT " + select + " FROM aircraft WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
     }
     // search make -> engine -> price
     else if (make != "" && engine != "" && priceStart != "" && priceEnd != "") {
@@ -143,12 +143,6 @@ app.get("/search", async function(req, res){
     else if (priceStart != "" && priceEnd != "") {
       sql  = "SELECT * FROM aircraft WHERE price BETWEEN " + priceStart + " AND " + priceEnd + "";
     }
-<<<<<<< HEAD
-=======
-    else {
-      sql = "SELECT * FROM aircraft WHERE manufacturer = ''";
-    }
->>>>>>> ff9b3d28fec214941c4f2dc1f14384caffcf6072
       conn.query(sql,function(err,results,fields) {
         if(err) throw(err);
         var columns = [];
