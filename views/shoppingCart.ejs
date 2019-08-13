@@ -17,6 +17,21 @@
         <th scope="col"></th>
 
       </tr>
+      <% rows.forEach(function(row) { %>
+      <tr>
+      <th><%= row['year'] %></th>
+      <th><%= row['manufacturer'] %></th>
+      <th><%= row['model'] %></th>
+      <td><%= row['price'] %></td>
+      <td><button class="btn btn-delete" type ="button" id= delete_<%= row['id'] %> onclick="deleteCart(event, this);">DELETE</button></td>  
+      </tr>
+      <% }) %>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Total</th>
+        <th><%= total %></th>
+      </tr>
     </thead>
     <tbody>
       

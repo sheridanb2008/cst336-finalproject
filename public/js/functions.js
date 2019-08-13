@@ -16,28 +16,43 @@ function modifyEntry(event, elem) {
    }
   }else{
     location.href="/modifyAircraft?id=" + id;
-//  $.ajax({
-//         method: "get",
-//            url: "/api/modifyAircraft",
-//           data: {"id": id},
-//        success: function(results){
-          
-//         $.ajax({
-//         method: "get",
-//            url: "/dataEntry",
-//           data: {"results": results},
-//              })
-        
-         
-         
        }
-//       })
-//   }
-  
+}   
+function addCart(event, elem) {
+      var elementId = $(elem).attr("id");
+      var parts = elementId.split("_");
+      var id = parseInt(parts[1]);
+  $.ajax({
+    method:"post",
+    url:"/api/cartSession",
+    success: function(){
+    console.log("in success")
+            $.ajax({
+            method: "post",
+               url: "/api/addCart",
+              data: {"id": id},
+           success: function(){
+         
 
-
+                   }
+         
+           }) 
+  }
+  })  
 }   
 
-// function dollarsToXX(dollars) {
-                        
-// }
+function deleteCart(event, elem) {
+    var elementId = $(elem).attr("id");
+    var parts = elementId.split("_");
+    var id = parseInt(parts[1]);
+    if(confirm("Click OK to delete item from database.")){ 
+      $.ajax({
+        method: "post",
+           url: "/api/deleteCart",
+          data: {"id": id},
+       success: function(){location.reload(true)}
+       
+      })
+     
+       }
+}   

@@ -142,7 +142,7 @@ app.get("/search", async function(req, res){
     // search price
     else if (priceStart != "" && priceEnd != "") {
       sql  = "SELECT * FROM aircraft WHERE price BETWEEN " + priceStart + " AND " + priceEnd + "";
-    };
+    }
       conn.query(sql,function(err,results,fields) {
         if(err) throw(err);
         var columns = [];
@@ -173,9 +173,22 @@ app.get("/signUp", function(req, res) {
    res.render("signUp.ejs",{"loginError":"","menuBarHTML" : buildMenuBar(req)});
 })
 
-app.get("/cart", function(req, res) {
-  res.render("shoppingCart.ejs", {"menuBarHTML" : buildMenuBar(req)});
-})
+app.get("/cart", async function(req, res) {
+    var conn = tools.createConnection();
+    var sqlParams = await tools.findSession(conn);
+    var total = await tools.getTotal(conn,sqlParams)
+    var sql = "SELECT a.* FROM aircraft a, shopping_cart b WHERE b.orderID = ? and b.product_id = a.id";
+    conn.query(sql,sqlParams, function(err,results,fields) {
+      if(err) throw(err);
+      var columns = [];
+        fields.forEach(function(field) {
+        columns.push(field.name);  
+      })
+         
+      
+      res.render("shoppingCart.ejs", {"total":total,"rows":results,"columns":columns,"menuBarHTML" : buildMenuBar(req)});
+      })
+});
 
 app.get("/dataEntry", function(req, res) {
 //   console.log(req.query.results);
@@ -203,8 +216,50 @@ app.get("/dataEntry", function(req, res) {
     res.render("adminLogin.ejs", {"loginError":"Sign in as an administrator.","menuBarHTML" : buildMenuBar(req)});
   }
 })
+// Create order session variable
+app.post("/api/cartSession", async function(req, res) {
+  var conn = tools.createConnection();      
+  req.session.orderId = await tools.findSession(conn),
+  res.send("ok");
+})
+// Add to  Shopping Cart
+app.post("/api/addCart", function(req, res) {
+// console.log(req);
+    var sql;
+    var sqlParams = [req.session.orderId,req.body.id];
+    var conn = tools.createConnection();
+    sql = "INSERT INTO shopping_cart (orderID,product_id) VALUES(?,?)";
+    conn.connect(function(err) {
+        if(err) throw(err);
+            conn.query(sql,sqlParams, function(err,results,fields) {
+                if(err) throw(err);
+                res.send("ok");
+            }) 
+    }) 
+});
 
+//  Delete From cart
+//  Delete Aircraft
+app.post("/api/deleteCart", async function(req, res) {
+   var id = req.body.id;
+   var sqlParams = id ;
+   console.log(sqlParams);
+   var sql = "DELETE FROM shopping_cart WHERE product_id = ?" 
+   var conn = tools.createConnection();
+   conn.connect(function(err) {
+     
+        if(err) throw(err);
+     console.log("connected.");
+       conn.query(sql,sqlParams,function(err,results) {
+          if(err) throw err;
+            console.log(err);
+          res.send("ok");
+          });
+     
+    });
+}); 
 
+// admin add aircraft
 app.post("/api/addAircraft", function(req, res) {
   
   
