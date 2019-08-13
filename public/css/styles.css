@@ -616,14 +616,8 @@ thead {
    padding-right: 13px;
 }
 
-#resetSearch-btn {
-   background-color: #8A8699;
-   border-color: #8A8699;
-   width: 121px;
-}
-
 #submit-btn-airplane {
-   width: 121px;
+   width: 250px;
 }
 
 #aircraftDetails {

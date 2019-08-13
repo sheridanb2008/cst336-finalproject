@@ -142,10 +142,7 @@ app.get("/search", async function(req, res){
     // search price
     else if (priceStart != "" && priceEnd != "") {
       sql  = "SELECT * FROM aircraft WHERE price BETWEEN " + priceStart + " AND " + priceEnd + "";
-    }
-    else {
-      sql = "SELECT * FROM aircraft WHERE manufacturer = ''";
-    }
+    };
       conn.query(sql,function(err,results,fields) {
         if(err) throw(err);
         var columns = [];
