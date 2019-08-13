@@ -21,14 +21,14 @@ function buildMenuBar(req) {
     var menuHTML = '<a class="navLink" id="navLinkHome" href="/">Home</a>';
     menuHTML += '<a class="navLink"id="navLinkAircraft" href="/airplaneSearch">Aircraft</a>';
     if(!req.session.authenticated) {
-        menuHTML += '<a class="navLink"id="navLinkLogin" href="/userLoginAction">Log in</a>';
+        menuHTML += '<a class="navLink"id="navLinkLogin" href="/userLoginAction">User log in</a>';
     }
     else{
         if(!req.session.isAdmin) {
             menuHTML += '<a class="navLink"id="navLinkLogin" href="/userLogoutAction">Log out</a>';
         }
     }
-    menuHTML += '<a class="navLink"id="navLinkSignUp" href="/signUp">Create an account</a>';
+    menuHTML += '<a class="navLink"id="navLinkSignUp" href="/signUp">Create a user account</a>';
     if(req.session.authenticated && req.session.isAdmin) {
         menuHTML +='<a class="navLink" id="navLinkAdminLogin" href="/adminLogoutAction">Admin log out</a>';
     }
@@ -363,7 +363,7 @@ app.post("/userAuthenticate", async function(req,res) {
     req.session.authenticated = true;
     console.log("User authenticated.");
     //todo: This is a placeholder for the main logged in user page
-    res.render("index.ejs",{"menuBarHTML" : buildMenuBar(req)}); 
+    res.render("user.ejs",{"menuBarHTML" : buildMenuBar(req)}); 
   }
   else {
       res.render("login.ejs", {"loginError":"Invalid password or user id.","menuBarHTML" : buildMenuBar(req)});

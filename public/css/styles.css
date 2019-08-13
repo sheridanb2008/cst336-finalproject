@@ -245,12 +245,46 @@ input {
    display: flex; 
 }
 
+/* Footer styles */
+
 .footer {
    bottom: 0;
    height: 340px;
    background-color: #222222;
-   text-align: center;
    position: relative;
+}
+
+#container-footer {
+   color: #fff;
+   padding-top: 50px;
+   text-align: center;
+}
+
+#footer-row {
+   display: flex;
+   max-width: 1440px;
+}
+
+#footColLeft {
+   text-align: left;
+   padding-left: 140px;
+}
+
+#footColRight {
+   text-align: right;
+   padding-right: 100px;
+}
+
+.footerTitleText {
+   font-family: 'Barlow', sans-serif;
+   font-size: 16px;
+   color: #999999;
+   padding-top: 8px;
+}
+
+.footerTitleSubText {
+   font-family: 'Barlow', sans-serif;
+   font-size: 14px;
 }
 
 /* Login styles */
@@ -446,34 +480,6 @@ input {
    font-size: 15px;
 }
 
-.container-footer {
-   color: #fff;
-   padding-top: 50px;
-   width: 80%;
-}
-
-#footColLeft {
-   text-align: left;
-   padding-left: 140px;
-}
-
-#footColRight {
-   text-align: right;
-   padding-right: 100px;
-}
-
-.footerTitleText {
-   font-family: 'Barlow', sans-serif;
-   font-size: 16px;
-   color: #999999;
-   padding-top: 8px;
-}
-
-.footerTitleSubText {
-   font-family: 'Barlow', sans-serif;
-   font-size: 14px;
-}
-
 #loginPhoto {
    padding-left: 50px;
    padding-top: 25px;
@@ -593,7 +599,6 @@ thead {
    font-family: 'Barlow Condensed', sans-serif;
    font-size: 18px;
    padding-left: 35px;
-
    text-decoration: none;
 }
 
@@ -678,3 +683,4 @@ thead {
 #picFrame {
    text-align: right;
 }
+
