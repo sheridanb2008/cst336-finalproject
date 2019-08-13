@@ -22,14 +22,17 @@ function buildMenuBar(req) {
     menuHTML += '<a class="navLink"id="navLinkAircraft" href="/airplaneSearch">Aircraft</a>';
     if(!req.session.authenticated) {
         menuHTML += '<a class="navLink"id="navLinkLogin" href="/userLoginAction">User log in</a>';
+        menuHTML += '<a class="navLink"id="navLinkSignUp" href="/signUp">Create a user account</a>';
     }
     else{
         if(!req.session.isAdmin) {
-            menuHTML += '<a class="navLink"id="navLinkLogin" href="/userLogoutAction">Log out</a>';
+          menuHTML += '<a class="navLink"id="navPrevOrders" href="/prevOrderSearch">Previous Orders</a>';
+          menuHTML += '<a class="navLink"id="navLinkLogin" href="/userLogoutAction">Log out</a>';
         }
     }
-    menuHTML += '<a class="navLink"id="navLinkSignUp" href="/signUp">Create a user account</a>';
+    
     if(req.session.authenticated && req.session.isAdmin) {
+      menuHTML += '<a class="navLink"id="navAdminHome" href="/adminHome">Admin Home</a>';
         menuHTML +='<a class="navLink" id="navLinkAdminLogin" href="/adminLogoutAction">Admin log out</a>';
     }
     else{
@@ -373,6 +376,14 @@ app.get("/adminLogoutAction", function(req, res) {
     res.render("index.ejs", {"loginError":"", "menuBarHTML" : buildMenuBar(req)});
 });
   
+app.get("/prevOrderSearch", function(req, res) {
+  if(req.session.authenticated) {
+    res.render("user.ejs",{"menuBarHTML" : buildMenuBar(req)}); 
+  }
+  else {
+    res.render("login.ejs", {"loginError":"Invalid password or user id.","menuBarHTML" : buildMenuBar(req)});
+  }
+});
 
 app.post("/userAuthenticate", async function(req,res) {
   var loginSuccessful = await admin.userLogin(req,res,false); 
@@ -408,26 +419,39 @@ app.post("/createUser", async function(req,res) {
   }
 });
 
+function renderAdminMain(req, res) {
+  var sql;
+  var sqlParams;
+  var conn = tools.createConnection();
+  sql = "SELECT * from aircraft";
+  conn.connect(function(err) {
+      if(err) throw(err);
+          conn.query(sql,function(err,results,fields) {
+              if(err) throw(err);
+              var columns = [];
+              fields.forEach(function(field) {
+                columns.push(field.name);
+              })             
+              res.render("adminList", {"rows":results,"columns":columns,"menuBarHTML" : buildMenuBar(req)});
+      });
+  });
+}
+
+app.get("/adminHome", function(req, res) {
+  if(req.session.authenticated && req.session.isAdmin) {
+    renderAdminMain(req, res);
+  }
+  else {
+    res.render("login.ejs", {"loginError":"Invalid password or user id.","menuBarHTML" : buildMenuBar(req)});
+  }
+});
+
 app.post("/adminAuthenticate", async function(req,res) {
     var loginSuccessful = await admin.userLogin(req,res,true);  
   
     if(loginSuccessful) {      
       req.session.authenticated = true;
-      var sql;
-      var sqlParams;
-      var conn = tools.createConnection();
-      sql = "SELECT * from aircraft";
-      conn.connect(function(err) {
-          if(err) throw(err);
-              conn.query(sql,function(err,results,fields) {
-                  if(err) throw(err);
-                  var columns = [];
-                  fields.forEach(function(field) {
-                    columns.push(field.name);
-                  })             
-                  res.render("adminList", {"rows":results,"columns":columns,"menuBarHTML" : buildMenuBar(req)});
-          });
-      });
+      renderAdminMain(req, res);
     }
   else {
     //todo: render failed login
