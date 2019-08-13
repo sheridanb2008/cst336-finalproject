@@ -53,10 +53,11 @@ CREATE TABLE `users` (
 
   -- default username is nwtech with the password of nwtech  
   INSERT INTO `users` (`id`, `firstName`, `lastName`, `agreeSpam`, `username`, `email`, `passwordHash`,`adminUser`) VALUES
-(1, 'admin', 'tech ', 0, 'nwtech', 'nwtech@csumb.edu', '$2a$10$B7wXUpVEvGpcm77kJgHnpu2aF/kKNwsJS3swo2wd3wDSbw/SFIIme',1);
+(1, 'admin', 'tech ', 0, 'nwtech', 'nwtech@csumb.edu', '$2a$10$B7wXUpVEvGpcm77kJgHnpu2aF/kKNwsJS3swo2wd3wDSbw/SFIIme',1),
+(2, 'admin', 'tech', 0, 'admin', 'nwtech1@csumb.edu', '$2b$10$c5NCpQ79XNuIZzv7UNctRuPPW2aE.2h6.WJkP5u.hFNdSHGT3IH.K',1);
   
    INSERT INTO `users` (`id`, `firstName`, `lastName`, `agreeSpam`, `username`, `email`, `passwordHash`,`adminUser`) VALUES
-(2,  'Joe', 'User', 0, 'nwuser', 'nwuser@csumb.edu', '$2a$10$B7wXUpVEvGpcm77kJgHnpu2aF/kKNwsJS3swo2wd3wDSbw/SFIIme',0);
+(3,  'Joe', 'User', 0, 'nwuser', 'nwuser@csumb.edu', '$2a$10$B7wXUpVEvGpcm77kJgHnpu2aF/kKNwsJS3swo2wd3wDSbw/SFIIme',0);
   -- Insert into Aircraft --
 INSERT INTO aircraft VALUES
 (1,2002,'Cessna Citation','Bravo',814100,'550-1007',3533.8,'Jet',200,'Pass',10,'https://upload.wikimedia.org/wikipedia/commons/2/25/Cessna_550b_citation_bravo_cs-dhr_arp.jpg'),
