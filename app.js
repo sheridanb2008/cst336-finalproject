@@ -192,6 +192,23 @@ app.get("/cart", async function(req, res) {
       })
 });
 
+app.post("/prevOrder", async function(req, res) {
+    var conn = tools.createConnection();
+    var sqlParams = req.body.orderId;
+    var total = await tools.getTotal(conn,sqlParams)
+    var sql = "SELECT a.* FROM aircraft a, shopping_cart b WHERE b.orderID = ? and b.product_id = a.id";
+    conn.query(sql,sqlParams, function(err,results,fields) {
+      if(err) throw(err);
+      var columns = [];
+        fields.forEach(function(field) {
+        columns.push(field.name);  
+      })
+         
+      
+      res.render("shoppingCart.ejs", {"total":total,"rows":results,"columns":columns,"menuBarHTML" : buildMenuBar(req)});
+      })
+});
+
 app.get("/dataEntry", function(req, res) {
 //   console.log(req.query.results);
   var results = [{
