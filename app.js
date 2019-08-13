@@ -85,7 +85,7 @@ app.get("/search", async function(req, res){
 
     // search make -> engine -> price -> hours
     if (make != "" && engine != "" && priceStart != "" && priceEnd != "" && hoursStart != "" && hoursEnd != "") {
-      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+      sql  = "SELECT " + select + " FROM aircraft WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
     }
     // search make -> engine -> price
     else if (make != "" && engine != "" && priceStart != "" && priceEnd != "") {
