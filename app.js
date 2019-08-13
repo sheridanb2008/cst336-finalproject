@@ -326,7 +326,7 @@ app.get("/adminList", function(req, res) {
                 fields.forEach(function(field) {
                   columns.push(field.name);
                 })
-                res.render("adminList", {"rows":results,"columns":columns});
+                res.render("adminList", {"rows":results,"columns":columns,"menuBarHTML" : buildMenuBar(req)});
 
         });
     });
