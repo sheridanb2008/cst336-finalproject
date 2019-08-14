@@ -202,9 +202,11 @@ app.get("/privacyPolicy", function(req, res) {
 app.get("/cart", async function(req, res) {
     var conn = tools.createConnection();
     var sqlParams = await tools.findSession(conn);
+    var btnView = 0;
+    req.session.orderId = sqlParams;
     var total = await tools.getTotal(conn,sqlParams)
     var sql = "SELECT a.* FROM aircraft a, shopping_cart b WHERE b.orderID = ? and b.product_id = a.id";
-    conn.query(sql,sqlParams, function(err,results,fields) {
+    conn.query(sql,sqlParams, function(err,results,fields) { 
       if(err) throw(err);
       var columns = [];
         fields.forEach(function(field) {
@@ -212,14 +214,14 @@ app.get("/cart", async function(req, res) {
       })
          
       
-      res.render("shoppingCart.ejs", {"total":total,"rows":results,"columns":columns,"menuBarHTML" : buildMenuBar(req)});
+      res.render("shoppingCart.ejs", {"total":total,"buttonView":btnView,"rows":results,"columns":columns,"menuBarHTML" : buildMenuBar(req)});
       })
 });
 
 //  Order Confermation 
 app.get("/confirmOrder", async function(req, res) {
 var conn = tools.createConnection();
-var sqlParams = await tools.findSession(conn);
+var sqlParams = req.session.orderId; 
 var sql = "UPDATE order_status SET status = 'paid' WHERE id = ?";  
 conn.query(sql,sqlParams, function(err,results,fields) {
       if(err) throw(err);
@@ -229,7 +231,8 @@ conn.query(sql,sqlParams, function(err,results,fields) {
 
 app.post("/prevOrder", async function(req, res) {
     var conn = tools.createConnection();
-    var sqlParams = req.body.orderId;
+    var sqlParams = req.body.orderId; 
+    var btnView = 1;  
     var total = await tools.getTotal(conn,sqlParams)
     var sql = "SELECT a.* FROM aircraft a, shopping_cart b WHERE b.orderID = ? and b.product_id = a.id";
     conn.query(sql,sqlParams, function(err,results,fields) {
@@ -240,7 +243,7 @@ app.post("/prevOrder", async function(req, res) {
       })
          
       
-      res.render("shoppingCart.ejs", {"total":total,"rows":results,"columns":columns,"menuBarHTML" : buildMenuBar(req)});
+      res.render("shoppingCart.ejs", {"total":total,"buttonView":btnView,"rows":results,"columns":columns,"menuBarHTML" : buildMenuBar(req)});
       })
 });
 

@@ -27,7 +27,12 @@
         <td><%= row['manufacturer'] %></td>
         <td><%= row['model'] %></td>
         <td>$ <%= row['price'] %></td>
-        <td><button class="btn btn-remove-cart" type ="button" id= delete_<%= row['id'] %> onclick="deleteCart(event, this);">Remove from cart</button></td>  
+        <td id = "delBtn_<%= row['id'] %>"></td>
+        <script>
+        if('<%= buttonView %>' == 0 ){
+          $("#delBtn_<%= row['id'] %>").append("<button class='btn btn-remove-cart' type ='button' id= 'delete_<%= row['id'] %>' onclick='deleteCart(event, this);'>Remove from cart</button>")
+          }
+        </script>  
       <td></td>
       </tr>
       <% }) %>
@@ -44,10 +49,16 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><button class="btn btn-confirm-cart" onclick= "confirmOrder()" type ="button"</button>Place order</td>
+        <td id="confirmButton"></td>
         <td></td>
       </tr>
-
+      <script>
+      if('<%= total %>' != "" && '<%= buttonView %>' == 0 ){
+        $("#confirmButton").append("<button class='btn btn-confirm-cart' onclick= 'confirmOrder()' type ='button'</button>CONFIRM ORDER");
+      } else {
+        $("#confirmButton").empty();
+      }         
+      </script>
     </tbody>
   </table>
   </div>
