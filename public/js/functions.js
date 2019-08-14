@@ -63,9 +63,8 @@ function addCart(event, elem) {
             method: "post",
                url: "/api/addCart",
               data: {"id": id},
-           success: function(){
-           $("#statusBtn_"+id+"").empty();
-           $("#statusBtn_"+id+"").append("<h3>In Cart</h3>");
+           success: function(){location.reload(true)
+
            }
             }) 
   }
