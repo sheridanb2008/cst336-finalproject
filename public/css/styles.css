@@ -1,4 +1,8 @@
 
+
+body {
+   background: linear-gradient(90deg, #eaeeff 60%, #ffffff 60%);
+}
 *:focus {
    outline: none;
 }
@@ -22,7 +26,7 @@ h4 {
 
 .container {
    position: relative;
-   max-width: 1440px;
+   max-width: 100%;
    padding: 0px;
    z-index: 0;
 }
@@ -30,6 +34,8 @@ h4 {
 #backPic {
    position: absolute;
    z-index: 1;
+   width: 100%;
+   text-align: center;
 }
 
 #backgroundPic {
@@ -49,6 +55,7 @@ h4 {
    position: absolute;
    width: 100%;
    z-index: 2;
+   margin: 0 auto;
 }
 
 .btn-outline-primary {
@@ -251,7 +258,7 @@ input {
    bottom: 0;
    height: 340px;
    background-color: #222222;
-   position: relative;
+   /* position: relative; */
 }
 
 #container-footer {
@@ -431,6 +438,14 @@ input {
    margin-right: 0px;
 }
 
+#signUpContainer {
+   background-color: #fff;
+   padding-left: 40px;
+   width: 416px;
+   height: 725px;
+   margin-right: 0px;
+}
+
 #adminLoginContainer {
    background-color: #fff;
    padding-left: 40px;
@@ -588,6 +603,7 @@ thead {
 #navContainer {
    padding-top: 23px;
    text-align: right;
+   padding-right: 30px;
 }
 
 .navLinkHidden {
