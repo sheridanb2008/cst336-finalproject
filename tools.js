@@ -18,7 +18,7 @@ createConnection: function() {
     var conn = mysql.createConnection({
         host:"localhost", 
         user: "root", 
-        password:"9dYuy(zkkZhWzoZyrRgK", 
+        password:"", 
         database: "team_final"});
     
     return conn;
