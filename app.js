@@ -56,7 +56,6 @@ app.get("/airplaneSearch", async function(req, res){
   var conn = tools.createConnection();
   var sql  = "SELECT DISTINCT manufacturer FROM `aircraft` ORDER BY manufacturer";
   var sql2 = "SELECT DISTINCT engineType FROM `aircraft` ORDER BY engineType";
-
   conn.connect(function(err) {
 
     if (err) throw err;
@@ -146,7 +145,7 @@ app.get("/search", async function(req, res){
       sql  = "SELECT * FROM aircraft WHERE price BETWEEN " + priceStart + " AND " + priceEnd + "";
     }
     else {
-      sql = "SELECT * FROM aircraft WHERE manufacturer = ''";
+      sql = "SELECT * FROM aircraft";
     }
       conn.query(sql,function(err,results,fields) {
         if(err) throw(err);
@@ -195,6 +194,8 @@ app.get("/cart", async function(req, res) {
       })
 });
 
+
+
 app.post("/prevOrder", async function(req, res) {
     var conn = tools.createConnection();
     var sqlParams = req.body.orderId;
@@ -238,6 +239,45 @@ app.get("/dataEntry", function(req, res) {
     res.render("adminLogin.ejs", {"loginError":"Sign in as an administrator.","menuBarHTML" : buildMenuBar(req)});
   }
 })
+// Generate reports from SQL Database
+app.post("/api/createReports", async function(req, res) {
+  var conn = tools.createConnection();
+  var sql = "SELECT cast(AVG(price) AS decimal(10,2)) AS average FROM `aircraft`";
+  var sql2 = "SELECT COUNT(ID) AS numberOfAircraft FROM `aircraft`";
+  var sql3 = "SELECT COUNT(inspection) AS 'Pass' FROM `aircraft` WHERE `inspection` = 'Pass'";
+  var sql4 = "SELECT COUNT(inspection) AS 'Fail' FROM `aircraft` WHERE `inspection` = 'Fail'"
+  var elemId = req.body.id;
+  conn.connect(function(err) {
+    if(err) throw (err);
+    if(elemId == 'planes') {
+      conn.query(sql2, function(err, result) {
+        if(err) throw(err);
+        res.send(result);
+      })
+    } else if (elemId == 'passFail') {
+      var paf = [];
+      conn.query(sql3, function(err, result) {
+        if(err) throw(err);
+        result.forEach(function(row) {
+          paf.push(row.Pass);
+        })
+        conn.query(sql4, function(err, result) {
+          if(err) throw(err);
+          result.forEach(function(row) {
+          paf.push(row.Fail);
+        })
+          res.send(paf);
+        })
+      })
+    } else {
+      conn.query(sql, function(err, result) {
+        if(err) throw(err);
+        res.send(result);
+      })
+    }
+  })
+})
+
 // Create order session variable
 app.post("/api/cartSession", async function(req, res) {
   var conn = tools.createConnection();      

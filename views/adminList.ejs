@@ -54,5 +54,12 @@
 
     </tbody>
   </table>
+  <div id="generateReport" align="Center">
+    <button class="btn btn-update" type ="button" id="planes" onclick="createReports(event, this);">Planes in Inventory</button>
+    <button class="btn btn-update" type ="button" id="passFail" onclick="createReports(event, this);">Number of Pass or Fail</button>
+    <button class="btn btn-update" type ="button" id="average" onclick="createReports(event, this);">Average Price of Products</button><br><br>
+  </div>
+  <div id="reportOutput" align="Center">
+  </div><br><br>
 
 <% include partials/footer.ejs %>
