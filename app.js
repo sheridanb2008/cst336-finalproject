@@ -77,77 +77,79 @@ app.get("/search", async function(req, res){
   let priceEnd = req.query.priceEnd;
   let hoursStart = req.query.hoursStart;
   let hoursEnd = req.query.hoursEnd;
+  
 
   let sql = "";
   let conn = tools.createConnection();
-  
-  conn.connect(function(err) {
-    if(err) throw(err);
+  var sId = await tools.findSession(conn);
+//   conn.connect(function(err) {
+//     if(err) throw(err);
 
     // search make -> engine -> price -> hours
     if (make != "" && engine != "" && priceStart != "" && priceEnd != "" && hoursStart != "" && hoursEnd != "") {
-      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
     }
     // search make -> engine -> price
     else if (make != "" && engine != "" && priceStart != "" && priceEnd != "") {
-      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + "";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + "";
     }
     // search make -> engine -> hours
     else if (make != "" && engine != "" && hoursStart != "" && hoursEnd != "") {
-      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "' AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "' AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
     } 
     // search make -> price -> hours
     else if (make != "" && priceStart != "" && priceEnd != "" && hoursStart != "" && hoursEnd != "") {
-      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE manufacturer = '" + make + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
     }
     // search engine -> price -> hours
     else if (engine != "" && priceStart != "" && priceEnd != "" && hoursStart != "" && hoursEnd != "") {
-      sql  = "SELECT * FROM aircraft WHERE engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
     }
     // search make -> engine
     else if (make != "" && engine != "") {
-      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "'";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE manufacturer = '" + make + "' AND engineType = '" + engine + "'";
     }
     // search make -> price
     else if (make != "" && priceStart != "" && priceEnd != "") {
-      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + "";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE manufacturer = '" + make + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + "";
     }
     // search make -> hours
     else if (make != "" && hoursStart != "" && hoursEnd != "") {
-      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "' AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE manufacturer = '" + make + "' AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
     }
     // search engine -> price
     else if (engine != "" && priceStart != "" && priceEnd != "") {
-      sql  = "SELECT * FROM aircraft WHERE engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + ""; 
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE engineType = '" + engine + "' AND price BETWEEN " + priceStart + " AND " + priceEnd + ""; 
     }
     // search engine -> hours
     else if (engine != "" && hoursStart != "" && hoursEnd != "") {
-      sql  = "SELECT * FROM aircraft WHERE engineType = '" + engine + "' AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE engineType = '" + engine + "' AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
     }
     // search price -> hours
     else if (priceStart != "" && priceEnd != "" && hoursStart != "" && hoursEnd != "") {
-      sql  = "SELECT * FROM aircraft WHERE price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE price BETWEEN " + priceStart + " AND " + priceEnd + " AND totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
     }
     // search make
     else if (make != "") {
-      sql  = "SELECT * FROM aircraft WHERE manufacturer = '" + make + "'";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE manufacturer = '" + make + "'";
     }
     // search engine
     else if (engine != "") {
-      sql  = "SELECT * FROM aircraft WHERE engineType = '" + engine + "'";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE engineType = '" + engine + "'";
     }
     // search hours
     else if (hoursStart != "" && hoursEnd != "") {
-      sql  = "SELECT * FROM aircraft WHERE totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE totalTime BETWEEN " + hoursStart + " AND " + hoursEnd + "";
     }
     // search price
     else if (priceStart != "" && priceEnd != "") {
-      sql  = "SELECT * FROM aircraft WHERE price BETWEEN " + priceStart + " AND " + priceEnd + "";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a WHERE price BETWEEN " + priceStart + " AND " + priceEnd + "";
     }
     else {
-      sql = "SELECT * FROM aircraft WHERE manufacturer = ''";
+      sql  = "SELECT a.*, (SELECT product_id FROM shopping_cart WHERE product_id = a.id and orderID = "+sId+") as inCart FROM aircraft a ";
     }
       conn.query(sql,function(err,results,fields) {
+//         console.log(results)
         if(err) throw(err);
         var columns = [];
         fields.forEach(function(field) {
@@ -161,7 +163,7 @@ app.get("/search", async function(req, res){
         }
       });
     
-  });
+//   });
 
 }); // search route
 

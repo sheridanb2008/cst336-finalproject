@@ -51,7 +51,6 @@ function modifyEntry(event, elem) {
 }
 
 function addCart(event, elem) {
-      alert("Airplane added to your cart");
       var elementId = $(elem).attr("id");
       var parts = elementId.split("_");
       var id = parseInt(parts[1]);
@@ -65,11 +64,10 @@ function addCart(event, elem) {
                url: "/api/addCart",
               data: {"id": id},
            success: function(){
-            
-
-                   }
-         
-           }) 
+           $("#statusBtn_"+id+"").empty();
+           $("#statusBtn_"+id+"").append("<h3>In Cart</h3>");
+           }
+            }) 
   }
   })  
 }   

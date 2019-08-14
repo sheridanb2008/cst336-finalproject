@@ -28,9 +28,18 @@
                                  <div id="searchRow"><div id="searchLabel">SMOH</div><%= row['smoh'] %></div>
                                  <div id="searchRow"><div id="searchLabel">Inspection</div><%= row['inspection'] %></div>
                                  <td id="picFrame"><img class = "listImage" src = <%= row['imageURL'] %> width = 250</td></td>
-                                 <td clas="popup"><button class="btn btn-delete" type ="button" id= add_<%= row['id'] %> onclick="addCart(event, this);">Add To Cart</button></td>
+                                 <td clas="popup" id = "statusBtn_<%= row['id'] %>"></td>
+                                 <script>
+                                   if('<%= row['inCart'] %>' == ""){
+                                      $("#statusBtn_<%= row['id'] %>").append("<button class='btn btn-delete' type ='button' id= add_<%= row['id'] %> onclick='addCart(event, this);'>Add To Cart</button>")
+                                   } else {
+                                      $("#statusBtn_<%= row['id'] %>").append("<h3>In Cart</h3>")
+                                      } 
+                                 </script> 
                            </tr>
+                     
                         <% }) %>
+                       
                      </tbody>
                   </table>
                </div>
