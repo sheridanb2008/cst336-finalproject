@@ -251,6 +251,13 @@ input {
    text-align: left;
 }
 
+#orderConfText {
+   font-family: 'Barlow', sans-serif;
+   text-align: left;
+   padding-left: 40px;
+   padding-right: 40px;
+}
+
 #optionPic {
    padding-top: 5px;
    padding-right: 15px;
@@ -632,6 +639,18 @@ thead {
    border-color: #8A8699;
    border-radius: 0px;
    color: #fff;
+}
+
+.btn-confirm-cart {
+   font-family: 'Barlow Condensed', sans-serif;
+   margin-top: 0px;
+   margin-right: 6px;
+   background-color: #D2A517;
+   border-color: #D2A517;
+   border-radius: 0px;
+   color: #fff;
+   padding-left: 30px;
+   padding-right: 30px;
 }
 
 #navContainer {

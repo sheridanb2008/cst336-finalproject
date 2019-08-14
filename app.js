@@ -503,7 +503,7 @@ function renderAdminMain(req, res) {
               fields.forEach(function(field) {
                 columns.push(field.name);
               })             
-              res.render("adminList", {"rows":results,"columns":columns,"menuBarHTML" : buildMenuBar(req)});
+              res.render("adminDash", {"rows":results,"columns":columns,"menuBarHTML" : buildMenuBar(req)});
       });
   });
 }
