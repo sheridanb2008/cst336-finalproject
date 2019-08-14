@@ -153,8 +153,12 @@ app.get("/search", async function(req, res){
         fields.forEach(function(field) {
           columns.push(field.name);
         })
-        res.render("results", {"rows":results,"columns":columns, "menuBarHTML" : buildMenuBar(req)});
-
+        if (results.length == 0) {
+          res.render("results", {"noResults": "Sorry, no results. Please ", "link": "/airplaneSearch", "linkText": " try again.", "rows":results,"columns":columns, "menuBarHTML" : buildMenuBar(req)});
+        } 
+        else {
+        res.render("results", {"noResults": "", "link": "", "linkText": "", "rows":results,"columns":columns, "menuBarHTML" : buildMenuBar(req)});
+        }
       });
     
   });

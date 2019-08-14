@@ -1,5 +1,4 @@
 
-
 body {
    background: linear-gradient(90deg, #eaeeff 60%, #ffffff 60%);
 }
@@ -727,4 +726,9 @@ thead {
 
 .airplanePhoto4 {
    margin-top: 50px;
+}
+
+#noSearchResult {
+   font-family: 'Barlow', sans-serif;
+   padding-left: 45px;
 }
