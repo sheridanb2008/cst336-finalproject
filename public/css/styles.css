@@ -781,3 +781,10 @@ thead {
    height: 130px;
    width: 330px;
 }
+
+#inCartText {
+   font-family: 'Barlow Condensed', sans-serif;
+   font-size: 18px;
+   padding-right: 10px;
+   color: #d2a517;
+}

@@ -33,7 +33,7 @@
                                    if('<%= row['inCart'] %>' == ""){
                                       $("#statusBtn_<%= row['id'] %>").append("<button class='btn btn-delete' type ='button' id= add_<%= row['id'] %> onclick='addCart(event, this);'>Add To Cart</button>")
                                    } else {
-                                      $("#statusBtn_<%= row['id'] %>").append("<h3>In Cart</h3>")
+                                      $("#statusBtn_<%= row['id'] %>").append("<p id='inCartText'>In cart</p>")
                                       } 
                                  </script> 
                            </tr>
