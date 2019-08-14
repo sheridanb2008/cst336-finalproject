@@ -732,3 +732,11 @@ thead {
    font-family: 'Barlow', sans-serif;
    padding-left: 45px;
 }
+
+#termsContainer {
+   font-family: 'Barlow', sans-serif;
+   font-size: 14px;
+   padding-left: 50px;
+   padding-right: 50px;
+   padding-top: 30px;
+}

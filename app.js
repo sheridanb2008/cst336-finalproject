@@ -26,7 +26,7 @@ function buildMenuBar(req) {
     }
     else{
         if(!req.session.isAdmin) {
-          menuHTML += '<a class="navLink"id="navPrevOrders" href="/prevOrderSearch">Previous Orders</a>';
+          menuHTML += '<a class="navLink"id="navPrevOrders" href="/prevOrderSearch">Previous orders</a>';
           menuHTML += '<a class="navLink"id="navLinkLogin" href="/userLogoutAction">Log out</a>';
         }
     }
@@ -179,6 +179,14 @@ app.get("/adminMain", function(req, res) {
 
 app.get("/signUp", function(req, res) {
    res.render("signUp.ejs",{"loginError":"","menuBarHTML" : buildMenuBar(req)});
+})
+
+app.get("/termsOfService", function(req, res) {
+  res.render("termsOfService.ejs",{"menuBarHTML" : buildMenuBar(req)});
+})
+
+app.get("/privacyPolicy", function(req, res) {
+  res.render("privacyPolicy.ejs",{"menuBarHTML" : buildMenuBar(req)});
 })
 
 app.get("/cart", async function(req, res) {
@@ -438,7 +446,7 @@ app.post("/userAuthenticate", async function(req,res) {
     res.render("user.ejs",{"menuBarHTML" : buildMenuBar(req)}); 
   }
   else {
-      res.render("login.ejs", {"loginError":"Invalid password or user id.","menuBarHTML" : buildMenuBar(req)});
+      res.render("login.ejs", {"loginError":"Invalid password or email.","menuBarHTML" : buildMenuBar(req)});
     }
 });
 

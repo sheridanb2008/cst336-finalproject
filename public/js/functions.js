@@ -51,7 +51,7 @@ function modifyEntry(event, elem) {
 }
 
 function addCart(event, elem) {
-      alert("Add to Cart");
+      alert("Airplane added to your cart");
       var elementId = $(elem).attr("id");
       var parts = elementId.split("_");
       var id = parseInt(parts[1]);
@@ -78,7 +78,7 @@ function deleteCart(event, elem) {
     var elementId = $(elem).attr("id");
     var parts = elementId.split("_");
     var id = parseInt(parts[1]);
-    if(confirm("Click OK to delete item from cart.")){ 
+    if(confirm("Click OK to remove the airplane from your cart")){ 
       $.ajax({
         method: "post",
            url: "/api/deleteCart",
