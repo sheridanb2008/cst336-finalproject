@@ -1,14 +1,11 @@
 function createReports(event, elem) {
-  console.log("In createReports");
   var elementId = $(elem).attr("id");
-  console.log(elementId + " THIS IS THE ID");
   var val = 0;
   $.ajax({
     method: "post",
     url: "/api/createReports",
     data: {"id": elementId},
     success: function(rows) {
-      console.log("In the function");
       if (elementId == 'planes') {
         rows.forEach(function(row) {
           val = row.numberOfAircraft;
@@ -54,6 +51,7 @@ function modifyEntry(event, elem) {
 }
 
 function addCart(event, elem) {
+      alert("Add to Cart");
       var elementId = $(elem).attr("id");
       var parts = elementId.split("_");
       var id = parseInt(parts[1]);
@@ -67,7 +65,7 @@ function addCart(event, elem) {
                url: "/api/addCart",
               data: {"id": id},
            success: function(){
-         
+            
 
                    }
          

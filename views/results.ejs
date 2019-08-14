@@ -26,7 +26,7 @@
                                  <div id="searchRow"><div id="searchLabel">SMOH</div><%= row['smoh'] %></div>
                                  <div id="searchRow"><div id="searchLabel">Inspection</div><%= row['inspection'] %></div>
                                  <td id="picFrame"><img class = "listImage" src = <%= row['imageURL'] %> width = 250</td></td>
-                                 <td><button class="btn btn-delete" type ="button" id= add_<%= row['id'] %> onclick="addCart(event, this);">Add To Cart</button></td>
+                                 <td clas="popup"><button class="btn btn-delete" type ="button" id= add_<%= row['id'] %> onclick="addCart(event, this);">Add To Cart</button></td>
                            </tr>
                         <% }) %>
                      </tbody>
