@@ -187,6 +187,10 @@ app.get("/adminDash", function(req, res) {
   res.render("adminDash.ejs",{"menuBarHTML" : buildMenuBar(req)});
 })
 
+app.get("/orderConfirmation", function(req, res) {
+  res.render("orderConfirmation.ejs",{"menuBarHTML" : buildMenuBar(req)});
+})
+
 app.get("/termsOfService", function(req, res) {
   res.render("termsOfService.ejs",{"menuBarHTML" : buildMenuBar(req)});
 })
