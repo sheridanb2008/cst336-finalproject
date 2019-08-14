@@ -806,3 +806,45 @@ thead {
    padding-right: 10px;
    color: #d2a517;
 }
+
+/* check box */
+
+input[type=checkbox] {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+ }
+ 
+ input[type=checkbox]::-ms-check {
+   display: none;
+ }
+
+ input[type=checkbox] {
+   position: relative;
+   transform: translate(-900%, 0%);
+   width: 1em;
+   height: 1em;
+   border: 1px solid #d6d7da;
+   vertical-align: -2px;
+   color: #00306d;
+   background-color: #F5F5F5;
+ }
+ 
+ input[type=checkbox]::before {
+   content: "x";
+   position: absolute;
+   font-size: 1.2em;
+   right: 0.15em;
+   top: -0.5em;
+   visibility: hidden;
+ }
+ 
+ input[type=checkbox]:checked::before {
+   /* Use `visibility` instead of `display` to avoid recalculating layout */
+   visibility: visible;
+ }
+ 
+ input[type=checkbox]:disabled {
+   border-color: black;
+   background: #ddd;
+   color: #DADADA;
+ }
