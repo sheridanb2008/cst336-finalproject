@@ -22,7 +22,7 @@ function buildMenuBar(req) {
     menuHTML += '<a class="navLink"id="navLinkAircraft" href="/airplaneSearch">Aircraft</a>';
     if(!req.session.authenticated) {
         menuHTML += '<a class="navLink"id="navLinkLogin" href="/userLoginAction">User log in</a>';
-        menuHTML += '<a class="navLink"id="navLinkSignUp" href="/signUp">Create a user account</a>';
+        // menuHTML += '<a class="navLink"id="navLinkSignUp" href="/signUp">Create a user account</a>';
     }
     else{
         if(!req.session.isAdmin) {
@@ -32,7 +32,7 @@ function buildMenuBar(req) {
     }
     
     if(req.session.authenticated && req.session.isAdmin) {
-      menuHTML += '<a class="navLink"id="navAdminHome" href="/adminHome">Admin Home</a>';
+      menuHTML += '<a class="navLink"id="navAdminHome" href="/adminHome">Admin home</a>';
         menuHTML +='<a class="navLink" id="navLinkAdminLogin" href="/adminLogoutAction">Admin log out</a>';
     }
     else{
@@ -145,7 +145,7 @@ app.get("/search", async function(req, res){
       sql  = "SELECT * FROM aircraft WHERE price BETWEEN " + priceStart + " AND " + priceEnd + "";
     }
     else {
-      sql = "SELECT * FROM aircraft";
+      sql = "SELECT * FROM aircraft WHERE manufacturer = ''";
     }
       conn.query(sql,function(err,results,fields) {
         if(err) throw(err);

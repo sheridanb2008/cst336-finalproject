@@ -385,6 +385,7 @@ input {
  .form-group {
     text-align: left;
     width: 500px;
+    margin-bottom: 0px;
  }
 
 .form-groupB {
@@ -427,7 +428,11 @@ input {
 
 .form-check-input {
    margin-left: 0px;
-   margin-top: 20px;
+   margin-top: 7px;
+}
+
+#checkRow {
+   display: flex;
 }
 
 #createAccountContainer {
@@ -442,7 +447,7 @@ input {
    background-color: #fff;
    padding-left: 40px;
    width: 416px;
-   height: 725px;
+   height: 680px;
    margin-right: 0px;
 }
 
@@ -518,6 +523,16 @@ input {
    font-size: 14px;
    margin-bottom: 70px;
 }
+
+#tableListCart {
+   text-align:center;
+   width:90%;
+   margin: 0 auto;
+   font-family: 'Barlow', sans-serif;
+   font-size: 14px;
+   margin-bottom: 70px;
+}
+
 .listImage {
   padding: 5px;
 }
@@ -543,7 +558,7 @@ input {
    width: 100px;
 }
 
-#reset-btn:hover, .btn-delete:hover {
+#reset-btn:hover, .btn-delete:hover, .btn-remove-cart:hover {
    background-color: rgba(138, 134, 153, 0.788);
    border-color: rgba(138, 134, 153, 0.788);
    color: #fff;
@@ -593,6 +608,16 @@ thead {
 .btn-delete {
    font-family: 'Barlow Condensed', sans-serif;
    margin-top: 10px;
+   margin-right: 6px;
+   background-color: #8A8699;
+   border-color: #8A8699;
+   border-radius: 0px;
+   color: #fff;
+}
+
+.btn-remove-cart {
+   font-family: 'Barlow Condensed', sans-serif;
+   margin-top: 0px;
    margin-right: 6px;
    background-color: #8A8699;
    border-color: #8A8699;
@@ -698,4 +723,8 @@ thead {
 
 #picFrame {
    text-align: right;
+}
+
+.airplanePhoto4 {
+   margin-top: 50px;
 }

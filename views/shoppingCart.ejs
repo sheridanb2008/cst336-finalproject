@@ -3,10 +3,13 @@
 <main>
 
 <div id="header"></div>
+<div id="searchResultsBlock">
+    <div id="resultsContainer">
+    <div id="searchResultsContainer">
 
-<h3 id="adminListTitle">Your Cart</h3>
+<h3 id="searchResultsTitle">Your Cart</h3><br>
 
-<table id="tableList" class="table table-striped">
+<table id="tableListCart" class="table table-striped">
     <thead>
       <tr>
         <th scope="col">Year</th>
@@ -15,30 +18,32 @@
         <th scope="col">Price</th>
         <th scope="col"></th>
         <th scope="col"></th>
-
-      </tr>
-      <% rows.forEach(function(row) { %>
-      <tr>
-      <th><%= row['year'] %></th>
-      <th><%= row['manufacturer'] %></th>
-      <th><%= row['model'] %></th>
-      <td><%= row['price'] %></td>
-      <td><button class="btn btn-delete" type ="button" id= delete_<%= row['id'] %> onclick="deleteCart(event, this);">DELETE</button></td>  
-      </tr>
-      <% }) %>
-      <tr>
-        <th></th>
-        <th></th>
-        <th>Total</th>
-        <th><%= total %></th>
       </tr>
     </thead>
     <tbody>
-      
-
-
+      <% rows.forEach(function(row) { %>
+      <tr>
+        <td><%= row['year'] %></td>
+        <td><%= row['manufacturer'] %></td>
+        <td><%= row['model'] %></td>
+        <td><%= row['price'] %></td>
+        <td><button class="btn btn-remove-cart" type ="button" id= delete_<%= row['id'] %> onclick="deleteCart(event, this);">Remove from cart</button></td>  
+      <td></td>
+      </tr>
+      <% }) %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Total</td>
+        <td><%= total %></td>
+        <td></td>
+        <td></td>
+      </tr>
 
     </tbody>
   </table>
+  </div>
+  </div>
+  </div>
 
 <% include partials/footer.ejs %>

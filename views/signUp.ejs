@@ -3,7 +3,7 @@
       <main>
          <div id="header"></div>
             <div id="createAccountBlock">
-            <div id="createAccountContainer">
+            <div id="signUpContainer">
                <h3 id="createAccountTitle">Let's create your account</h3>
                <div>
                   <p id="loginError">
@@ -19,30 +19,31 @@
                      <label id="formLabel" for="formGroupInput">E-mail address</label>
                      <input type="text" class="form-control" id="emailInput" name="email" placeholder="example@example.com">
                      <label id="formLabel" for="formGroupInput">Password</label>
-                     <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Password (min of 8 characters)"><br>
-                  
+                     <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Password (min of 8 characters)"><br> 
                  </div>
                  <div class="form-groupB">
+                    <div id="checkRow">
                    <label class="form-check-label" for="defaultCheck1">
                        <p id="checkboxText">I have read and agree to Northwestern Technology's Financial Privacy Policy, as well as Northwestern Technology's Terms of Use and Privacy Policy.</p>
                    </label>  
                    <input class="form-check-input" type="checkbox" name="agreeTOS" value="1" id="defaultCheck1"><br>
-                   
+                   </div>
+                   <div id="checkRow">
                    <label class="form-check-label" for="defaultCheck2">
                        <p id="checkboxText">I want to receive communications about Northwestern Technology news and offers.</p>
                    </label>
                    <input class="form-check-input" type="checkbox" name="agreeSpam" value="1" id="defaultCheck2"><br>
-                   
+                   </div>
                 </div>
                  
                 <div class="form-groupC">
                      <button type="submit" onsubmit="signupValidate(event)" class="btn btn-primary" id="account-btn">JOIN</button>
                      <br><br>
-                     <p id="checkboxText">Already have an account? <a href="/login">Log in</a></p><br>
                 </div>
                   
                </form>
                </div> <!-- end of createAccountContainer div-->
+               <div class="airplanePhoto4" id="loginPhoto"><img src="img/airplane4.png"></div>
             </div>
             </div>
          <div>
