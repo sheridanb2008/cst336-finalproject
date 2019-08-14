@@ -57,6 +57,13 @@ h4 {
    margin: 0 auto;
 }
 
+#row-option, #quoteContainer {
+   position: absolute;
+   left: 50%;
+   transform: translate(-50%, 0%);
+   max-width: 1180px;
+}
+
 .btn-outline-primary {
    font-family: 'Barlow Condensed', sans-serif;
    margin-top: 18px;
@@ -96,7 +103,7 @@ h4 {
 }
 
 #shopBtn {
-   margin-top: 70px;
+   margin-top: 30px;
    padding-left: 40px;
    padding-right: 40px;
    font-size: 18px;
@@ -148,7 +155,7 @@ input {
 }
 
 #quoteBlock {
-   height: 400px;
+   height: 350px;
    background-color: #eaeeff;
    padding-top: 70px;
    padding-left: 170px;
@@ -166,7 +173,6 @@ input {
 }
 
 #optionBlock {
-   margin-top: 60px;
    height: 300px;
    background-color: #fff;
    padding-top: 60px;
@@ -202,6 +208,9 @@ input {
 }
 
 #createAccountBlock {
+   margin-left: auto;
+   margin-right: auto;
+   max-width: 1440px;;
    margin-top: 60px;
    height: 925px;
    background-color: #fff;
@@ -248,7 +257,7 @@ input {
 }
 
 .optionContainer {
-   display: flex; 
+   display: flex;
 }
 
 /* Footer styles */
@@ -263,12 +272,13 @@ input {
 #container-footer {
    color: #fff;
    padding-top: 50px;
-   text-align: center;
+   max-width: 1440px;
 }
 
 #footer-row {
    display: flex;
-   max-width: 1440px;
+   margin-left: 0 auto;
+   margin-right: 0 auto;
 }
 
 #footColLeft {
@@ -739,4 +749,35 @@ thead {
    padding-left: 50px;
    padding-right: 50px;
    padding-top: 30px;
+}
+
+.adminDash {
+   padding-right: 40px;
+   height: 605px !important;
+}
+
+#btn-plane-inventory, #btn-enter-plane, #planes, #passFail, #average {
+   width: 330px;
+}
+
+#planes, #passFail, #average {
+   margin-bottom: 10px;
+}
+
+#reportTitle {
+   font-family: 'Barlow Condensed', sans-serif;
+   font-size: 18px;
+   text-align: left;
+}
+
+#reportOutput {
+   font-family: 'Barlow', sans-serif;
+   font-size: 14px;
+   margin-top: 10px;
+   padding-top: 10px;
+   padding-left: 15px;
+   padding-right: 15px;
+   background-color: #E0E0E0;
+   height: 130px;
+   width: 330px;
 }

@@ -183,6 +183,10 @@ app.get("/signUp", function(req, res) {
    res.render("signUp.ejs",{"loginError":"","menuBarHTML" : buildMenuBar(req)});
 })
 
+app.get("/adminDash", function(req, res) {
+  res.render("adminDash.ejs",{"menuBarHTML" : buildMenuBar(req)});
+})
+
 app.get("/termsOfService", function(req, res) {
   res.render("termsOfService.ejs",{"menuBarHTML" : buildMenuBar(req)});
 })
