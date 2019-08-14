@@ -13,16 +13,26 @@ module.exports = {
     
 //     return conn;
 // }
-createConnection: function() {
+// createConnection: function() {
 
-    var conn = mysql.createConnection({
-        host:"localhost", 
-        user: "root", 
-        password:"", 
-        database: "team_final"});
+//     var conn = mysql.createConnection({
+//         host:"localhost", 
+//         user: "root", 
+//         password:"", 
+//         database: "team_final"});
     
-    return conn;
-},
+//     return conn;
+// },
+ createConnection : function(){
+     var conn = mysql.createConnection({
+        host: "us-cdbr-iron-east-02.cleardb.net",
+        user: "b6951b682e3ba4",
+    password: "99c2847e",
+    database: "heroku_c95e9e22677104d"
+  })
+     return conn;
+  }, // createConnection
+  
 //    create session variable
   findSession: function(conn){
     return new Promise( function(resolve,reject) {
