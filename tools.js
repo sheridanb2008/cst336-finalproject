@@ -15,11 +15,19 @@ module.exports = {
 // }
 // createConnection: function() {
 
+<<<<<<< HEAD
 //     var conn = mysql.createConnection({
 //         host:"localhost", 
 //         user: "root", 
 //         password:"", 
 //         database: "team_final"});
+=======
+    var conn = mysql.createConnection({
+        host:"localhost", 
+        user: "root", 
+        password:"9dYuy(zkkZhWzoZyrRgK", 
+        database: "team_final"});
+>>>>>>> 951c0c4f2197b4fed9d850e17b92b44460d239b1
     
 //     return conn;
 // },
