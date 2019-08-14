@@ -216,7 +216,16 @@ app.get("/cart", async function(req, res) {
       })
 });
 
-
+//  Order Confermation 
+app.get("/confirmOrder", async function(req, res) {
+var conn = tools.createConnection();
+var sqlParams = await tools.findSession(conn);
+var sql = "UPDATE order_status SET status = 'paid' WHERE id = ?";  
+conn.query(sql,sqlParams, function(err,results,fields) {
+      if(err) throw(err);
+})
+  res.render("orderConfirmation.ejs", {"id":sqlParams,"menuBarHTML" : buildMenuBar(req)});
+});
 
 app.post("/prevOrder", async function(req, res) {
     var conn = tools.createConnection();

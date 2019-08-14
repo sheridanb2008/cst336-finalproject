@@ -30,7 +30,7 @@ function createReports(event, elem) {
 }
 
 function modifyEntry(event, elem) {
-  
+  console.log("modifyEntry")
     var elementId = $(elem).attr("id");
     var parts = elementId.split("_");
     var operation = parts[0];
@@ -85,4 +85,8 @@ function deleteCart(event, elem) {
       })
      
        }
-}   
+}  
+function confirmOrder(){
+  console.log("confirm function")
+  location.href="/confirmOrder"
+}
