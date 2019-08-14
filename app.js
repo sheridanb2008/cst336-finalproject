@@ -475,7 +475,7 @@ app.post("/userAuthenticate", async function(req,res) {
 app.post("/createUser", async function(req,res) {
   var userExists = await admin.userAlreadyExists(req.body.email);
   if(userExists) {
-    res.render("signUp.ejs", {"loginError":"A user with this email address already exists","menuBarHTML" : buildMenuBar(req)});
+    res.render("signUp.ejs", {"loginError":"This email address already exists.","menuBarHTML" : buildMenuBar(req)});
     return;
   }
   else{
