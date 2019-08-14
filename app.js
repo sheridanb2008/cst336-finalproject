@@ -535,6 +535,9 @@ app.post("/adminAuthenticate", async function(req,res) {
 });
 
 // server listening
-app.listen("8081", "0.0.0.0", function(){
-   console.log("Running Express Server...")
+// app.listen("8081", "0.0.0.0", function(){
+//    console.log("Running Express Server...")
+// });
+app.listen(process.env.PORT, process.env.IP, function(){
+  console.log("Running Express Server...")
 });
