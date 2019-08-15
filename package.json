@@ -17,12 +17,12 @@
   },
   "homepage": "https://github.com/sheridanb2008/cst336-finalproject#readme",
   "dependencies": {
-    "bcrypt": "^3.0.6",
-    "ejs": "^2.6.2",
-    "express": "^4.17.1",
-    "express-session": "^1.16.2",
-    "mysql": "^2.17.1",
-    "node": "^10.16.2",
-    "request": "^2.88.0"
+    "bcrypt": "3.0.6",
+    "ejs": "2.6.2",
+    "express": "4.17.1",
+    "express-session": "1.16.2",
+    "mysql": "2.17.1",
+    "node": "12.7.0",
+    "request": "2.88.0"
   }
 }
